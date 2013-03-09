@@ -1,22 +1,22 @@
 Planet = {}
 
 function Planet:new()
-  m = {}
-  for i=1,(math.random(1,3)),1 do
-    m[i] = Moon:new()
-  end
-
   local object = {
     image = love.graphics.newImage("asteroid.png"),
     x = 350,
     y = 150,
-    value = math.random(10, 40)
+    radius = math.random(10, 40)
   }
 
   -- Physics
   object.body = love.physics.newBody(world, object.x,object.y, "dynamic")
-  object.shape = love.physics.newCircleShape(object.size)
+  object.shape = love.physics.newCircleShape(object.radius)
   object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Planet")-- connect body to shape
+
+  object.moons = {}
+  for i=1,(math.random(1,3)),1 do
+    object.moons[i] = Moon:new(object.x, object.y, object.radius)
+  end
   
   setmetatable(object, { __index = Planet })
   return object

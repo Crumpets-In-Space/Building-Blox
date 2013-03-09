@@ -19,6 +19,8 @@ function SolarSystem:new(sizeOfStar)
    --v += plan[i].value
   end
 
+  plan[1] = Planet:new()
+
   require "entities/Asteroid"
   for i=1,(math.random(20)),1 do
     ast[i] = Asteroid:new()
@@ -57,6 +59,10 @@ end
 
 function SolarSystem:draw()
   for i,v in ipairs(self.asteroids) do
+    v:draw()
+  end
+
+  for i,v in ipairs(self.planets) do
     v:draw()
   end
 end
