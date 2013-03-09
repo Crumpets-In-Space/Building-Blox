@@ -19,11 +19,12 @@ end
 -- Move Player
 function Player:move(direction)
   movementSpeed = 10
+  speedLimit = 140
   
-  if direction == 'right' then self.xSpeed = self.xSpeed + movementSpeed
-  elseif direction == 'left' then self.xSpeed = self.xSpeed - movementSpeed
-  elseif direction == 'up' then self.ySpeed = self.ySpeed + movementSpeed
-  elseif direction == 'down' then self.ySpeed = self.ySpeed - movementSpeed 
+  if direction == 'right' and self.xSpeed <= speedLimit then self.xSpeed = self.xSpeed + movementSpeed
+  elseif direction == 'left' and self.xSpeed >= -speedLimit then self.xSpeed = self.xSpeed - movementSpeed
+  elseif direction == 'up' and self.ySpeed <= speedLimit then self.ySpeed = self.ySpeed + movementSpeed
+  elseif direction == 'down' and self.ySpeed >= -speedLimit then self.ySpeed = self.ySpeed - movementSpeed 
   end
 end
 
