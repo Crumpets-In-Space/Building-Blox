@@ -47,5 +47,5 @@ function Player:update(dt)
 end
 
 function Player:draw()
-  g.draw(p.image, p.x, p.y)
+  g.draw(self.image, self.x, self.y)
 end
