@@ -1,8 +1,13 @@
 Star = {}
 
-function Star:new()
+function Star:new(s)
+  
+  if not size then
+    s = math.random(1000)
+  end
+
   local object = {
-    size = math.random(200)
+    size = s 
   }
 
   setmetatable(object, { __index = Star })

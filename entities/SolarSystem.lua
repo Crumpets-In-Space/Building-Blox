@@ -1,15 +1,21 @@
 SolarSystem = {}
 
-function SolarSystem:new()
-  s = Star.new()
+function SolarSystem:new(sizeOfStar)
+  if sizeOfStar then
+    s = Star:new(sizeOfStar)
+  else
+    s = Star:new()
+  end
   plan = {} 
   ast = {}
 
-  for i=1,(sun.size/10),+1 do
+  numOfPlanets = ((sun.size+9)*math.floor(sun.size/100))
+
+  for i=1,numOfPlanets,+1 do
     plan[i] = Planet:new()
   end
 
-  for i=i,(math.random(20)),+1 do
+  for i=i,(math.random(100)),+1 do
     ast[i] = Astroid:new()
   end
 
