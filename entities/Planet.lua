@@ -2,7 +2,7 @@ Planet = {}
 
 function Planet:new()
   local object = {
-    size = math.random(50, 100)
+    size = math.random(10, 40)
   }
 
   setmetatable(object, { __index = Planet })

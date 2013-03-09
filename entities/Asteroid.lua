@@ -2,7 +2,7 @@ Asteroid = {}
 
 function Asteroid:new()
   local object = {
-    size = math.random(30)
+    size = math.random(5)
     image = love.graphics.newImage("asteroid.png"),
     x = 150,
     y = 150,
