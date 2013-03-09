@@ -24,6 +24,10 @@ function Planet:new()
 end
 
 function Planet:update()
+  x, y = self.body:getLinearVelocity()
+  for i,v in ipairs(self.moons) do
+    v.body:setLinearVelocity(x, y) 
+  end
 end
 
 function Planet:draw()
