@@ -36,10 +36,11 @@ function SolarSystem:new(sizeOfStar)
   return object
 end
 
-function SolarSystem:update()
+function SolarSystem:update(dt)
   for i,v in ipairs(self.asteroids) do
-    if v.body == nil then
-      
+    if v:isDestroyed() then
+      v:update(dt)
+      v = nil
     end
   end
 end

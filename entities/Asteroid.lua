@@ -1,25 +1,30 @@
 Asteroid = {}
 
 function Asteroid:new()
-  local object = {
-    value = math.random(5)
-    image = love.graphics.newImage("asteroid.png"),
-    x = math.random(1200),
-    y = math.random(800)
-  }
-
-  -- Physics
-  object.body = love.physics.newBody(world, object.x,object.y, "dynamic")
-  object.shape = love.physics.newCircleShape(object.size)
-  object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Asteroid")-- connect body to shape
+  local object = {}
   
+  object.image = love.graphics.newImage("asteroid.png")
+  object.size = math.random(5,10)
+  -- Physics
+  object.body = love.physics.newBody(world, math.random(1200), math.random(800), "dynamic")
+  object.shape = love.physics.newCircleShape(object.size)
+  object.fixture = love.physics.newFixture(object.body, object.shape)-- connect body to shape
+  object.fixture:setUserData("Asteroid")
+
   setmetatable(object, { __index = Asteroid })
   return object
 end
 
 -- Update function
 function Asteroid:update(dt)  
-  
+end
+
+function Asteroid:isDestroyed()
+  if self.fixture:getUserData() == "DESTROYME" then
+    return true
+  else
+    return false
+  end
 end
 
 function Asteroid:draw()

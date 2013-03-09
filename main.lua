@@ -22,6 +22,9 @@ function love.update(dt)
   
   -- update Player
   p:update(dt)
+  
+  -- update Solar System
+  s:update(dt)
 end
 
 function love.draw()
@@ -45,7 +48,7 @@ function beginContact(a, b, coll)
     if a:getUserData() == b:getUserData() then
       -- determine type
       if a:getUserData() == 'Asteroid' then
-        a:destroy()
+        a:setUserData("DESTROYME")
       end
     end
 end
@@ -53,4 +56,6 @@ end
 
 function endContact(a, b, coll)
     text = text.."\n"..a:getUserData().." uncolliding with "..b:getUserData()
+    coll = nil
+    collectgarbage()
 end
