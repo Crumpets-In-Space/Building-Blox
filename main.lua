@@ -23,6 +23,10 @@ function love.load()
 
   -- SOUNDS
   explosion = love.audio.newSource("Sounds/explosion.wav","static")
+  
+  
+  -- IMAGES
+  bkgrnd = g.newImage("background.jpg")
 
 end
 
@@ -48,6 +52,9 @@ function love.update(dt)
 end
 
 function love.draw()
+
+  --g.draw(bkgrnd,0,0)
+  
   for i=1,p.health,1 do
     -- Heart
     love.graphics.setColor(255, 0, 0) -- red
@@ -66,9 +73,9 @@ function love.draw()
   love.graphics.setColor(255, 255, 255) -- white
   g.print("FPS: " .. love.timer.getFPS(), 2, 2)
   
+  g.print("Score: " .. p.value,g.getWidth() - 400, 150)
+  
   camera:set()
-
-  --g.print("Score: " .. p)
 
   -- Draw player
   p:draw()

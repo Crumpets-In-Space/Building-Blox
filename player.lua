@@ -5,7 +5,7 @@ function Player:new()
   -- define our parameters here
   local object = {
     value = 10,
-    image = g.newImage("hamster.png"),
+    image = g.newImage("player.png"),
     x = g.getWidth()/2,
     y = g.getHeight()/2,
     width = 0,
@@ -59,5 +59,5 @@ end
 
 function Player:draw()
   g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
-  g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),  1/2, 1/2, self.image:getWidth()/2, self.image:getHeight()/2)
+  g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),  1/13, 1/13, self.image:getWidth()/2, self.image:getHeight()/2)
 end
