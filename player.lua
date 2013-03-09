@@ -12,6 +12,12 @@ function Player:new()
     xSpeed = 0,
     ySpeed = 0
   }
+
+  -- Physics
+  object.body = love.physics.newBody(world, object.x,object.y, "dynamic")
+  object.shape = love.physics.newCircleShape(50)
+  object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Ball")-- connect body to shape
+  
   setmetatable(object, { __index = Player })
   return object
 end
@@ -21,10 +27,10 @@ function Player:move(direction)
   movementSpeed = 10
   speedLimit = 140
   
-  if direction == 'right' and self.xSpeed <= speedLimit then self.xSpeed = self.xSpeed + movementSpeed
-  elseif direction == 'left' and self.xSpeed >= -speedLimit then self.xSpeed = self.xSpeed - movementSpeed
-  elseif direction == 'up' and self.ySpeed >= -speedLimit then self.ySpeed = self.ySpeed - movementSpeed
-  elseif direction == 'down' and self.ySpeed <= speedLimit then self.ySpeed = self.ySpeed + movementSpeed 
+  if direction == 'right' then self.body:applyForce(1000, 0)    -- and self.xSpeed <= speedLimit then self.xSpeed = self.xSpeed + movementSpeed
+  elseif direction == 'left' then self.body:applyForce(-1000, 0) -- and self.xSpeed >= -speedLimit then self.xSpeed = self.xSpeed - movementSpeed
+  elseif direction == 'up' then self.body:applyForce(0, -1000)  -- and self.ySpeed >= -speedLimit then self.ySpeed = self.ySpeed - movementSpeed
+  elseif direction == 'down' then self.body:applyForce(0, 1000)  -- and self.ySpeed <= speedLimit then self.ySpeed = self.ySpeed + movementSpeed 
   end
 end
 
@@ -41,11 +47,9 @@ function Player:update(dt)
   elseif love.keyboard.isDown("up") then
     self:move('up')
   end
-  -- update the player's position
-  self.x = self.x + (self.xSpeed * dt)
-  self.y = self.y + (self.ySpeed * dt)
 end
 
 function Player:draw()
-  g.draw(self.image, self.x, self.y)
+  g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
+  g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),  1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
 end
