@@ -1,25 +1,30 @@
 function love.load()
-  player = {
-    image = love.graphics.newImage("hamster.png"),
-    x = 50,
-    y = 50,
-    speed = 100
-  }
+  -- graphics love
+  g = love.graphics
+  
+  -- instantiate our player and set initial values
+  require "Player"
+  p = Player:new()
 end
 
 function love.update(dt)
-   if love.keyboard.isDown("right") then
-      player.x = player.x + (player.speed * dt)
-   elseif love.keyboard.isDown("left") then
-      player.x = player.x - (player.speed * dt)
-   end
-   if love.keyboard.isDown("down") then
-      player.y = player.y + (player.speed * dt)
-   elseif love.keyboard.isDown("up") then
-      player.y = player.y - (player.speed * dt)
-   end
+  if love.keyboard.isDown("right") then
+    p:move('right')
+  elseif love.keyboard.isDown("left") then
+    p:move('left')
+  end
+  
+  if love.keyboard.isDown("down") then
+    p:move('down')
+  elseif love.keyboard.isDown("up") then
+    p:move('up')
+  end
+  
+  -- update the player's position
+  p:update(dt)
+ 
 end
 
 function love.draw()
-   love.graphics.draw(player.image, player.x, player.y)
+   g.draw(p.image, p.x, p.y)
 end
