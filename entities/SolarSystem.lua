@@ -20,7 +20,7 @@ function SolarSystem:new(sizeOfStar)
   end
 
   require "entities/Asteroid"
-  for i=1,(math.random(100,200)),1 do
+  for i=1,(math.random(1000,2000)),1 do
     ast[i] = Asteroid:new()
 --    v = v + ast[i].value
   end
