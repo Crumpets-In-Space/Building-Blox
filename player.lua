@@ -22,34 +22,23 @@ function Player:new()
   return object
 end
 
--- Move Player
-function Player:move(direction)
-  if direction == 'right' then 
-    self.body:applyForce(1000, 0)    -- and self.xSpeed <= speedLimit then self.xSpeed = self.xSpeed + movementSpeed
-  elseif direction == 
-    'left' then self.body:applyForce(-1000, 0) -- and self.xSpeed >= -speedLimit then self.xSpeed = self.xSpeed - movementSpeed
-  elseif direction == 'up' then self.body:applyForce(0, -1000)  -- and self.ySpeed >= -speedLimit then self.ySpeed = self.ySpeed - movementSpeed
-  elseif direction == 'down' then self.body:applyForce(0, 1000)  -- and self.ySpeed <= speedLimit then self.ySpeed = self.ySpeed + movementSpeed 
-  end
-end
-
 -- Update function
 function Player:update(dt)  
   if love.keyboard.isDown("right") then
-    self:move('right')
+    self.body:applyForce(500, 0)
   elseif love.keyboard.isDown("left") then
-    self:move('left')
+    self.body:applyForce(-500, 0)
   end
   
   if love.keyboard.isDown("down") then
-    self:move('down')
+    self.body:applyForce(0, 500)
   elseif love.keyboard.isDown("up") then
-    self:move('up')
+    self.body:applyForce(0, -500)
   end
   
   -- Get current velocity
   x, y = self.body:getLinearVelocity( )
-  camera:move(x/60,y/60)
+  camera:move(x*dt,y*dt)
   
   -- Determine if player is dead
   if self.health <= 0 then
