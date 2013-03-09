@@ -4,7 +4,7 @@ Player = {}
 function Player:new()
   -- define our parameters here
   local object = {
-    value = 10
+    value = 10,
     image = love.graphics.newImage("hamster.png"),
     x = 50,
     y = 50,

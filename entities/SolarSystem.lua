@@ -11,7 +11,7 @@ function SolarSystem:new(sizeOfStar)
   ast = {}
 
   --numOfPlanets = ((s.size+9)*math.floor(s.size/100))
-  v = s.value
+  --v = s.value
 
   require "entities/Planet"
   for i=1,10,1 do
@@ -22,13 +22,13 @@ function SolarSystem:new(sizeOfStar)
   require "entities/Asteroid"
   for i=1,(math.random(10)),1 do
     ast[i] = Asteroid:new()
-    v += ast[i].value
+--    v = v + ast[i].value
   end
 
   local object = {
     --sun = s,
     --planets = plan,
-    value = v
+ --   value = v,
     asteroids = ast
   }
 
@@ -37,10 +37,9 @@ function SolarSystem:new(sizeOfStar)
 end
 
 function SolarSystem:update(dt)
-  for i,v in ipairs(self.asteroids) do
-    if v:isDestroyed() then
-      v:update(dt)
-      v = nil
+  for i=#self.asteroids,1,-1 do
+    if self.asteroids[i]:isDestroyed() then
+      table.remove(self.asteroids, i)
     end
   end
 end

@@ -30,7 +30,7 @@ end
 function love.draw()
   g.print("FPS: " .. love.timer.getFPS(), 2, 2)
 
-  g.print("Score: " .. p)
+  --g.print("Score: " .. p)
 
   -- Draw player
   p:draw()
