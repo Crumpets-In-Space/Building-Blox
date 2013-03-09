@@ -29,7 +29,18 @@ function Player:move(direction)
 end
 
 -- Update function
-function Player:update(dt)
+function Player:update(dt)  
+  if love.keyboard.isDown("right") then
+    self:move('right')
+  elseif love.keyboard.isDown("left") then
+    self:move('left')
+  end
+  
+  if love.keyboard.isDown("down") then
+    self:move('down')
+  elseif love.keyboard.isDown("up") then
+    self:move('up')
+  end
   -- update the player's position
   self.x = self.x + (self.xSpeed * dt)
   self.y = self.y + (self.ySpeed * dt)
