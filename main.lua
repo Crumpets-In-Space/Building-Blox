@@ -72,7 +72,8 @@ function love.update(dt)
 end
 
 function love.draw()
-  g.print("The Sun is " ..sRelp, g.getWidth() - 100, 400)
+  g.setFont( g.newFont(20) )
+  g.print("The Sun is " ..sRelp, g.getWidth() - 400, 400)
 
   --g.draw(bkgrnd,0,0)
   
@@ -85,13 +86,13 @@ function love.draw()
   end
   
   if gameover then
-    love.graphics.setColor(255, 255, 255) -- white
+    g.setColor(255, 255, 255) -- white
     g.print("GAME OVER", g.getWidth()/2 - 35, g.getHeight()/2 + 50)
   end
   
   camera:setScale(zoom,zoom)
   
-  love.graphics.setColor(255, 255, 255) -- white
+  g.setColor(255, 255, 255) -- white
   g.print("FPS: " .. love.timer.getFPS(), 2, 2)
   
   g.print("Score: " .. p.value,g.getWidth() - 400, 150)
