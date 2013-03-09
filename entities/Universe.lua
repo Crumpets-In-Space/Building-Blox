@@ -2,7 +2,7 @@ Universe = {}
 
 function Universe:new()
   local object = {
-    solarSystems = {}
+    solarSystems = {},
     solarSystems[1] = SolarSystem:new(1)
   }
 

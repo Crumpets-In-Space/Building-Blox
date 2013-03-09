@@ -2,10 +2,13 @@ Planet = {}
 
 function Planet:new()
   local object = {
+<<<<<<< HEAD
     image = love.graphics.newImage("asteroid.png"),
     x = 350,
-    y = 150,
+    y = 150
+=======
     size = math.random(50, 100)
+>>>>>>> d88dabdd9b1f5af8e0ba53abc15d8b9e77f09672
   }
 
   -- Physics
