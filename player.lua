@@ -8,9 +8,7 @@ function Player:new()
     x = 50,
     y = 50,
     width = 0,
-    height = 0,
-    xSpeed = 0,
-    ySpeed = 0
+    height = 0
   }
 
   -- Physics

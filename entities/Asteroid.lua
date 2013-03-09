@@ -5,9 +5,7 @@ function Asteroid:new()
     size = math.random(5)
     image = love.graphics.newImage("asteroid.png"),
     x = 150,
-    y = 150,
-    xSpeed = 0,
-    ySpeed = 0
+    y = 150
   }
 
   -- Physics

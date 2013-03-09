@@ -12,18 +12,18 @@ function love.load()
   p = Player:new()
   
   require "entities/Asteroid"
-  a = Asteroid:new()
+  a = Asteroid:new()  
+  
+  require "entities/Planet"
+  plan = Planet:new()  
 end
 
 function love.update(dt)
   --update World
   world:update(dt)
   
-  -- update the player's position
+  -- update Player
   p:update(dt)
- 
-  -- update the asteroid's position
-  a:update(dt) 
 end
 
 function love.draw()
@@ -34,6 +34,8 @@ function love.draw()
    
    -- Draw asteroid
    a:draw()
+   
+   plan:draw()
    
    love.graphics.print(text, 10, 10)
 end
