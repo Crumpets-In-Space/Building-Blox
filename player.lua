@@ -10,7 +10,7 @@ function Player:new()
     y = g.getHeight()/2,
     width = 0,
     height = 0,
-    health = 5
+    health = 10
   }
 
   -- Physics
@@ -50,6 +50,11 @@ function Player:update(dt)
   -- Get current velocity
   x, y = self.body:getLinearVelocity( )
   camera:move(x/60,y/60)
+  
+  -- Determine if player is dead
+  if self.health <= 0 then
+    gameover = true
+  end
 end
 
 function Player:draw()

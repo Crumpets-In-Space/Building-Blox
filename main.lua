@@ -12,6 +12,7 @@ function love.load()
   world = love.physics.newWorld( 0, 0, true )
     --These callback function names can be almost any you want:
     world:setCallbacks(beginContact, endContact)
+  gameover = false
   
   -- instantiate our player and set initial values
   require "Player"
@@ -36,17 +37,35 @@ function love.update(dt)
   s:update(dt)
   
   if love.keyboard.isDown("z") then
-    zoom = zoom + 0.1
+    zoom = 0.5 --zoom + 0.1
   end
   if love.keyboard.isDown("x") then
-    zoom = zoom - 0.1
+    zoom = 1 --zoom - 0.1
+  end
+  if love.keyboard.isDown("c") then
+    zoom = 0.25 --zoom - 0.1
   end
 end
 
 function love.draw()
-  g.polygon('fill', 100, 100, 200, 100, 150, 200)
+  for i=1,p.health,1 do
+    -- Heart
+    love.graphics.setColor(255, 0, 0) -- red
+    g.arc( "fill", (g.getWidth() - (70 * p.health) - 200) + 62.5 + 70*i, 50, 12.5, math.pi, 2*math.pi)
+    g.arc( "fill",  (g.getWidth() - (70 * p.health) - 200) + 87.5 + 70*i, 50, 12.5, math.pi, 2*math.pi)
+    g.polygon('fill',  (g.getWidth() - (70 * p.health) - 200) + 50 + 70*i, 50,  (g.getWidth() - (70 * p.health) - 200) + 100 + 70*i, 50,  (g.getWidth() - (70 * p.health) - 200) + 75 + 70*i, 100)
+  end
+  
+  if gameover then
+    love.graphics.setColor(255, 255, 255) -- white
+    g.print("GAME OVER", g.getWidth()/2 - 35, g.getHeight()/2 + 50)
+  end
+  
   camera:setScale(zoom,zoom)
+  
+  love.graphics.setColor(255, 255, 255) -- white
   g.print("FPS: " .. love.timer.getFPS(), 2, 2)
+  
   camera:set()
 
   --g.print("Score: " .. p)
@@ -89,7 +108,7 @@ function beginContact(a, b, coll)
       object = b:getShape():getRadius()
       
       if object > sizeOfPlayer then
-        print("loose health")
+        p.health = p.health - 1
       end
     end
 end
