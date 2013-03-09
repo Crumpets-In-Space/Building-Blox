@@ -45,3 +45,7 @@ function Player:update(dt)
   self.x = self.x + (self.xSpeed * dt)
   self.y = self.y + (self.ySpeed * dt)
 end
+
+function Player:draw()
+  g.draw(p.image, p.x, p.y)
+end

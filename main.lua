@@ -10,9 +10,10 @@ end
 function love.update(dt)
   -- update the player's position
   p:update(dt)
- 
+  
 end
 
 function love.draw()
-   g.draw(p.image, p.x, p.y)
+	 g.print("FPS: " .. love.timer.getFPS(), 2, 2)
+   p:draw()
 end
