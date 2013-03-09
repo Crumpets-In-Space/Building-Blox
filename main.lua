@@ -25,15 +25,17 @@ function love.update(dt)
 end
 
 function love.draw()
-	 g.print("FPS: " .. love.timer.getFPS(), 2, 2)
-   
-   -- Draw player
-   p:draw()
-   
-   -- Draw entities
-   s:draw()
-   
-   love.graphics.print(text, 10, 10)
+  g.print("FPS: " .. love.timer.getFPS(), 2, 2)
+
+  g.print("Score: " .. p)
+
+  -- Draw player
+  p:draw()
+  
+  -- Draw entities
+  s:draw()
+ 
+  love.graphics.print(text, 10, 10)
 end
 
 function beginContact(a, b, coll)

@@ -1,11 +1,16 @@
 Planet = {}
 
 function Planet:new()
+  m = {}
+  for i=1,(math.random(1,3)),1 do
+    m[i] = Moon:new()
+  end
+
   local object = {
     image = love.graphics.newImage("asteroid.png"),
     x = 350,
     y = 150,
-    size = math.random(10, 40)
+    value = math.random(10, 40)
   }
 
   -- Physics

@@ -10,7 +10,7 @@ function Star:new(s)
     image = love.graphics.newImage("asteroid.png"),
     x = 250,
     y = 300,
-    size = s 
+    value = s 
   }
   
   -- Physics
