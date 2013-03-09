@@ -22,8 +22,9 @@ function SolarSystem:new(sizeOfStar)
   plan[1] = Planet:new()
 
   require "entities/Asteroid"
-  for i=1,(math.random(1000,2000)),1 do
+  for i=1,(math.random(1000,1500)),1 do
     ast[i] = Asteroid:new()
+    ast[i].body:applyForce(math.random(-50,50),math.random(-50,50))
 --    v = v + ast[i].value
   end
 
@@ -61,19 +62,17 @@ function SolarSystem:update(dt)
 end
 
 function SolarSystem:draw()
-  excessAtEdgeOfScreen = 10
-  
   for i,v in ipairs(self.asteroids) do
-    if v.body:getX() < camera.x + 1200 + excessAtEdgeOfScreen and v.body:getX() > camera.x - excessAtEdgeOfScreen then
-      if v.body:getY() < camera.y + 800 + excessAtEdgeOfScreen and v.body:getY() > camera.y - excessAtEdgeOfScreen then
+    if v.body:getX() < camera.x + g.getWidth() + excessAtEdgeOfScreen and v.body:getX() > camera.x - excessAtEdgeOfScreen then
+      if v.body:getY() < camera.y + g.getHeight() + excessAtEdgeOfScreen and v.body:getY() > camera.y - excessAtEdgeOfScreen then
         v:draw()
       end
     end
   end
 
   for i,v in ipairs(self.planets) do
-    if v.body:getX() < camera.x + 1200 + excessAtEdgeOfScreen and v.body:getX() > camera.x - excessAtEdgeOfScreen then
-      if v.body:getY() < camera.y + 800 + excessAtEdgeOfScreen and v.body:getY() > camera.y - excessAtEdgeOfScreen then
+    if v.body:getX() < camera.x + g.getWidth() + excessAtEdgeOfScreen and v.body:getX() > camera.x - excessAtEdgeOfScreen then
+      if v.body:getY() < camera.y + g.getHeight() + excessAtEdgeOfScreen and v.body:getY() > camera.y - excessAtEdgeOfScreen then
         v:draw()
       end
     end
