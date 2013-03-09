@@ -41,8 +41,11 @@ function SolarSystem:update(dt)
   for i=#self.asteroids,1,-1 do
     if self.asteroids[i]:isDestroyed() then
       if self.asteroids[i].shape:getRadius() > 3 then
-        for i=1,(math.random(3)),1 do
-          table.insert(self.asteroids, Asteroid:new(self.asteroids[i].shape:getRadius()/3, self.asteroids[i].body:getX() + (5*i),  self.asteroids[i].body:getY() + (5*i)))
+        for j=1,(math.random(3)),1 do
+          if j==3 then r = 2
+          else r = 1.3
+          end
+          table.insert(self.asteroids, Asteroid:new(self.asteroids[i].shape:getRadius()/r, self.asteroids[i].body:getX() + (5*j),  self.asteroids[i].body:getY() + (5*j)))
         end
       end
       table.remove(self.asteroids, i)

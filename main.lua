@@ -43,7 +43,7 @@ end
 
 function beginContact(a, b, coll)
     x,y = coll:getNormal()
-    text = text.."\n"..a:getUserData().." colliding with "..b:getUserData().." with a vector normal of: "..x..", "..y
+    --text = text.."\n"..a:getUserData().." colliding with "..b:getUserData().." with a vector normal of: "..x..", "..y
     
     if a:getUserData() == b:getUserData() then
       -- Mark asteroid to be removed
@@ -59,5 +59,5 @@ end
 
 
 function endContact(a, b, coll)
-    text = text.."\n"..a:getUserData().." uncolliding with "..b:getUserData()
+    --text = text.."\n"..a:getUserData().." uncolliding with "..b:getUserData()
 end
