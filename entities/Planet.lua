@@ -16,7 +16,7 @@ function Planet:new()
   require 'entities/Moon'
   object.moons = {}
   for i=1,(math.random(1,3)),1 do
-    object.moons[i] = Moon:new(object.x, object.y, object.radius, i)
+    object.moons[i] = Moon:new(object, i)
   end
   
   setmetatable(object, { __index = Planet })
