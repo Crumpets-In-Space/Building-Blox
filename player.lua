@@ -6,8 +6,8 @@ function Player:new()
   local object = {
     value = 10,
     image = love.graphics.newImage("hamster.png"),
-    x = 50,
-    y = 50,
+    x = 600,
+    y = 400,
     width = 0,
     height = 0
   }
@@ -23,11 +23,10 @@ end
 
 -- Move Player
 function Player:move(direction)
-  movementSpeed = 10
-  speedLimit = 140
-  
-  if direction == 'right' then self.body:applyForce(1000, 0)    -- and self.xSpeed <= speedLimit then self.xSpeed = self.xSpeed + movementSpeed
-  elseif direction == 'left' then self.body:applyForce(-1000, 0) -- and self.xSpeed >= -speedLimit then self.xSpeed = self.xSpeed - movementSpeed
+  if direction == 'right' then 
+    self.body:applyForce(1000, 0)    -- and self.xSpeed <= speedLimit then self.xSpeed = self.xSpeed + movementSpeed
+  elseif direction == 
+    'left' then self.body:applyForce(-1000, 0) -- and self.xSpeed >= -speedLimit then self.xSpeed = self.xSpeed - movementSpeed
   elseif direction == 'up' then self.body:applyForce(0, -1000)  -- and self.ySpeed >= -speedLimit then self.ySpeed = self.ySpeed - movementSpeed
   elseif direction == 'down' then self.body:applyForce(0, 1000)  -- and self.ySpeed <= speedLimit then self.ySpeed = self.ySpeed + movementSpeed 
   end
@@ -46,6 +45,11 @@ function Player:update(dt)
   elseif love.keyboard.isDown("up") then
     self:move('up')
   end
+  
+  -- Get current velocity
+  x, y = self.body:getLinearVelocity( )
+  camera:move(x/60,y/60)
+  print(x,y)
 end
 
 function Player:draw()

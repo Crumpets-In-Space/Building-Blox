@@ -1,4 +1,7 @@
 function love.load()
+  --camera
+  require "camera"
+  
   -- graphics love
   g = love.graphics
    text       = ""
@@ -28,6 +31,7 @@ function love.update(dt)
 end
 
 function love.draw()
+  camera:set()
   g.print("FPS: " .. love.timer.getFPS(), 2, 2)
 
   --g.print("Score: " .. p)
@@ -39,6 +43,7 @@ function love.draw()
   s:draw()
  
   love.graphics.print(text, 10, 10)
+  camera:unset()
 end
 
 function beginContact(a, b, coll)
