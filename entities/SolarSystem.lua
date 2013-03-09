@@ -1,8 +1,13 @@
-function love.load()
+SolarSystem = {}
+
+function SolarSystem:new()
+  local object = {
+  }
+
+  setmetatable(object, { __index = SolarSystem })
+  return object
 end
 
-function love.update(dt)
-end
+function SolarSystem:update()
 
-function love.draw()
 end
