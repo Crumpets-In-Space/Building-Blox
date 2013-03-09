@@ -56,7 +56,13 @@ function SolarSystem:update(dt)
 end
 
 function SolarSystem:draw()
+  excessAtEdgeOfScreen = 10
+  
   for i,v in ipairs(self.asteroids) do
-    v:draw()
+    if v.body:getX() < camera.x + 1200 + excessAtEdgeOfScreen and v.body:getX() > camera.x - excessAtEdgeOfScreen then
+      if v.body:getY() < camera.y + 800 + excessAtEdgeOfScreen and v.body:getY() > camera.y - excessAtEdgeOfScreen then
+        v:draw()
+      end
+    end
   end
 end
