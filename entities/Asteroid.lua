@@ -1,12 +1,16 @@
 Asteroid = {}
 
-function Asteroid:new()
+function Asteroid:new(size, x, y)
   local object = {}
   
   object.image = love.graphics.newImage("asteroid.png")
-  object.size = math.random(5,10)
+  
+  if size then object.size = size else object.size = math.random(5,10) end  
+  if size then object.x = x else object.x = math.random(1200) end  
+  if size then object.y = y else object.y = math.random(800) end  
+  
   -- Physics
-  object.body = love.physics.newBody(world, math.random(1200), math.random(800), "dynamic")
+  object.body = love.physics.newBody(world, object.x, object.y, "dynamic")
   object.shape = love.physics.newCircleShape(object.size)
   object.fixture = love.physics.newFixture(object.body, object.shape)-- connect body to shape
   object.fixture:setUserData("Asteroid")

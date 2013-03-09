@@ -46,9 +46,13 @@ function beginContact(a, b, coll)
     text = text.."\n"..a:getUserData().." colliding with "..b:getUserData().." with a vector normal of: "..x..", "..y
     
     if a:getUserData() == b:getUserData() then
-      -- determine type
+      -- Mark asteroid to be removed
       if a:getUserData() == 'Asteroid' then
-        a:setUserData("DESTROYME")
+        if a:getShape():getRadius() > b:getShape():getRadius() then
+          b:setUserData("DESTROYME")
+        else
+          a:setUserData("DESTROYME")
+        end
       end
     end
 end
@@ -56,6 +60,4 @@ end
 
 function endContact(a, b, coll)
     text = text.."\n"..a:getUserData().." uncolliding with "..b:getUserData()
-    coll = nil
-    collectgarbage()
 end

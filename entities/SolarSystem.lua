@@ -20,7 +20,7 @@ function SolarSystem:new(sizeOfStar)
   end
 
   require "entities/Asteroid"
-  for i=1,(math.random(10)),1 do
+  for i=1,(math.random(20)),1 do
     ast[i] = Asteroid:new()
 --    v = v + ast[i].value
   end
@@ -37,8 +37,14 @@ function SolarSystem:new(sizeOfStar)
 end
 
 function SolarSystem:update(dt)
+  -- Remove destroyed asteroids
   for i=#self.asteroids,1,-1 do
     if self.asteroids[i]:isDestroyed() then
+      if self.asteroids[i].shape:getRadius() > 3 then
+        for i=1,(math.random(3)),1 do
+          table.insert(self.asteroids, Asteroid:new(self.asteroids[i].shape:getRadius()/3, self.asteroids[i].body:getX() + (5*i),  self.asteroids[i].body:getY() + (5*i)))
+        end
+      end
       table.remove(self.asteroids, i)
     end
   end
