@@ -31,8 +31,8 @@ function love.update(dt)
 end
 
 function love.draw()
-  camera:set()
   g.print("FPS: " .. love.timer.getFPS(), 2, 2)
+  camera:set()
 
   --g.print("Score: " .. p)
 
