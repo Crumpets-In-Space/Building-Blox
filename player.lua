@@ -9,13 +9,14 @@ function Player:new()
     x = 600,
     y = 400,
     width = 0,
-    height = 0
+    height = 0,
+    health = 5
   }
 
   -- Physics
   object.body = love.physics.newBody(world, object.x,object.y, "dynamic")
   object.shape = love.physics.newCircleShape(50)
-  object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Ball")-- connect body to shape
+  object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Player")-- connect body to shape
   
   setmetatable(object, { __index = Player })
   return object
@@ -49,7 +50,6 @@ function Player:update(dt)
   -- Get current velocity
   x, y = self.body:getLinearVelocity( )
   camera:move(x/60,y/60)
-  print(x,y)
 end
 
 function Player:draw()
