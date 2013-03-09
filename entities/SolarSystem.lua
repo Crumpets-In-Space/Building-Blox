@@ -22,7 +22,7 @@ function SolarSystem:new(sizeOfStar)
   plan[1] = Planet:new()
 
   require "entities/Asteroid"
-  for i=1,(math.random(20)),1 do
+  for i=1,(math.random(1000,2000)),1 do
     ast[i] = Asteroid:new()
 --    v = v + ast[i].value
   end
@@ -58,8 +58,14 @@ function SolarSystem:update(dt)
 end
 
 function SolarSystem:draw()
+  excessAtEdgeOfScreen = 10
+  
   for i,v in ipairs(self.asteroids) do
-    v:draw()
+    if v.body:getX() < camera.x + 1200 + excessAtEdgeOfScreen and v.body:getX() > camera.x - excessAtEdgeOfScreen then
+      if v.body:getY() < camera.y + 800 + excessAtEdgeOfScreen and v.body:getY() > camera.y - excessAtEdgeOfScreen then
+        v:draw()
+      end
+    end
   end
 
   for i,v in ipairs(self.planets) do

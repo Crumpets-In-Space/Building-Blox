@@ -6,8 +6,8 @@ function Asteroid:new(size, x, y)
   object.image = love.graphics.newImage("asteroid.png")
   
   if size then object.size = size else object.size = math.random(5,10) end  
-  if size then object.x = x else object.x = math.random(1200) end  
-  if size then object.y = y else object.y = math.random(800) end  
+  if size then object.x = x else object.x = math.random(-5000,5000) end  
+  if size then object.y = y else object.y = math.random(-5000,5000) end  
   
   -- Physics
   object.body = love.physics.newBody(world, object.x, object.y, "dynamic")
