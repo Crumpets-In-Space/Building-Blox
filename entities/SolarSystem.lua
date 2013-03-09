@@ -3,9 +3,9 @@ SolarSystem = {}
 function SolarSystem:new(sizeOfStar)
   require "entities/Star"
   if sizeOfStar then
-    --s = Star:new(sizeOfStar)
+    s = Star:new(sizeOfStar)
   else
-   -- s = Star:new()
+    s = Star:new()
   end
   plan = {} 
   ast = {}
@@ -29,7 +29,7 @@ function SolarSystem:new(sizeOfStar)
   end
 
   local object = {
-    --sun = s,
+    sun = s,
     planets = plan,
  --   value = v,
     asteroids = ast
@@ -62,6 +62,7 @@ function SolarSystem:update(dt)
 end
 
 function SolarSystem:draw()
+  
   for i,v in ipairs(self.asteroids) do
     if v.body:getX() < camera.x + g.getWidth() + excessAtEdgeOfScreen and v.body:getX() > camera.x - excessAtEdgeOfScreen then
       if v.body:getY() < camera.y + g.getHeight() + excessAtEdgeOfScreen and v.body:getY() > camera.y - excessAtEdgeOfScreen then
@@ -77,4 +78,6 @@ function SolarSystem:draw()
       end
     end
   end
+  
+  self.sun:draw()
 end

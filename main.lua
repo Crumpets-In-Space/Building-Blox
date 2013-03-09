@@ -17,9 +17,10 @@ function love.load()
   -- instantiate our player and set initial values
   require "Player"
   p = Player:new()
+  sRelp = ""
   
   require "entities/SolarSystem"
-  s = SolarSystem:new(3)  
+  s = SolarSystem:new()  
 
   -- SOUNDS
   explosion = love.audio.newSource("Sounds/explosion.wav","static")
@@ -49,9 +50,29 @@ function love.update(dt)
   if love.keyboard.isDown("c") then
     zoom = 0.25 --zoom - 0.1
   end
+  
+  
+  
+  -- determine sun position relative to player
+  sx = s.sun.body:getX( )
+  sy = s.sun.body:getY( )
+  px = p.body:getX( )
+  py = p.body:getY( )
+  
+  if sy >= py then 
+    -- South
+    if sx >= px then sRelp = "SE"
+    else sRelp = "SW" end
+  else
+    -- North
+    if sx >= px then sRelp = "NE"
+    else sRelp = "NW" end
+  end
+  
 end
 
 function love.draw()
+  g.print("The Sun is " ..sRelp, g.getWidth() - 100, 400)
 
   --g.draw(bkgrnd,0,0)
   
