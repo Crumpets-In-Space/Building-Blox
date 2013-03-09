@@ -8,23 +8,12 @@ function love.load()
 end
 
 function love.update(dt)
-  if love.keyboard.isDown("right") then
-    p:move('right')
-  elseif love.keyboard.isDown("left") then
-    p:move('left')
-  end
-  
-  if love.keyboard.isDown("down") then
-    p:move('down')
-  elseif love.keyboard.isDown("up") then
-    p:move('up')
-  end
-  
   -- update the player's position
   p:update(dt)
- 
+  
 end
 
 function love.draw()
-   g.draw(p.image, p.x, p.y)
+	 g.print("FPS: " .. love.timer.getFPS(), 2, 2)
+   p:draw()
 end

@@ -23,14 +23,29 @@ function Player:move(direction)
   
   if direction == 'right' and self.xSpeed <= speedLimit then self.xSpeed = self.xSpeed + movementSpeed
   elseif direction == 'left' and self.xSpeed >= -speedLimit then self.xSpeed = self.xSpeed - movementSpeed
-  elseif direction == 'up' and self.ySpeed <= speedLimit then self.ySpeed = self.ySpeed + movementSpeed
-  elseif direction == 'down' and self.ySpeed >= -speedLimit then self.ySpeed = self.ySpeed - movementSpeed 
+  elseif direction == 'up' and self.ySpeed >= -speedLimit then self.ySpeed = self.ySpeed - movementSpeed
+  elseif direction == 'down' and self.ySpeed <= speedLimit then self.ySpeed = self.ySpeed + movementSpeed 
   end
 end
 
 -- Update function
-function Player:update(dt)
+function Player:update(dt)  
+  if love.keyboard.isDown("right") then
+    self:move('right')
+  elseif love.keyboard.isDown("left") then
+    self:move('left')
+  end
+  
+  if love.keyboard.isDown("down") then
+    self:move('down')
+  elseif love.keyboard.isDown("up") then
+    self:move('up')
+  end
   -- update the player's position
   self.x = self.x + (self.xSpeed * dt)
   self.y = self.y + (self.ySpeed * dt)
+end
+
+function Player:draw()
+  g.draw(p.image, p.x, p.y)
 end
