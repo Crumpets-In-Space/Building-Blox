@@ -29,7 +29,7 @@ function SolarSystem:new(sizeOfStar)
 
   local object = {
     --sun = s,
-    --planets = plan,
+    planets = plan,
  --   value = v,
     asteroids = ast
   }
@@ -39,6 +39,9 @@ function SolarSystem:new(sizeOfStar)
 end
 
 function SolarSystem:update(dt)
+  for i,v in ipairs(self.planets) do
+    v:update()
+  end
   -- Remove destroyed asteroids
   for i=#self.asteroids,1,-1 do
     if self.asteroids[i]:isDestroyed() then
@@ -69,6 +72,10 @@ function SolarSystem:draw()
   end
 
   for i,v in ipairs(self.planets) do
-    v:draw()
+    if v.body:getX() < camera.x + 1200 + excessAtEdgeOfScreen and v.body:getX() > camera.x - excessAtEdgeOfScreen then
+      if v.body:getY() < camera.y + 800 + excessAtEdgeOfScreen and v.body:getY() > camera.y - excessAtEdgeOfScreen then
+        v:draw()
+      end
+    end
   end
 end

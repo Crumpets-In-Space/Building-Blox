@@ -13,9 +13,10 @@ function Planet:new()
   object.shape = love.physics.newCircleShape(object.radius)
   object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Planet")-- connect body to shape
 
+  require 'entities/Moon'
   object.moons = {}
   for i=1,(math.random(1,3)),1 do
-    object.moons[i] = Moon:new(object.x, object.y, object.radius)
+    object.moons[i] = Moon:new(object.x, object.y, object.radius, i)
   end
   
   setmetatable(object, { __index = Planet })
@@ -23,9 +24,18 @@ function Planet:new()
 end
 
 function Planet:update()
-
 end
 
 function Planet:draw()
   g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
+
+  excessAtEdgeOfScreen = 10
+  
+  for i,v in ipairs(self.moons) do
+    if v.body:getX() < camera.x + 1200 + excessAtEdgeOfScreen and v.body:getX() > camera.x - excessAtEdgeOfScreen then
+      if v.body:getY() < camera.y + 800 + excessAtEdgeOfScreen and v.body:getY() > camera.y - excessAtEdgeOfScreen then
+        v:draw()
+      end
+    end
+  end
 end

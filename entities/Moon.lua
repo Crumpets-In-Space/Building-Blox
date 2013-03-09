@@ -1,10 +1,25 @@
 Moon = {}
 
-function Moon:new(xPos, yPos, radius)
+function Moon:new(xPos, yPos, radius, i)
+  newX = xPos + radius
+  newY = yPos + radius
+
+  if math.random(2) == 1 then 
+    newX = newX + math.random(30,50) * i * -1 
+  else
+    newX = newX + math.random(30,50) * i
+  end
+
+  if math.random(2) == 1 then 
+    newY = newY + math.random(30,50) * i * -1 
+  else
+    newY = newY + math.random(30,50) * i
+  end
+
   local object = {
     image = love.graphics.newImage("asteroid.png"),
-    x = xPos + radius + 50,
-    y = yPos + radius + 20,
+    x = newX,
+    y = newY,
     value = math.random(5, 9)
   }
 
