@@ -5,9 +5,9 @@ function Player:new()
   -- define our parameters here
   local object = {
     value = 10,
-    image = love.graphics.newImage("hamster.png"),
-    x = 600,
-    y = 400,
+    image = g.newImage("hamster.png"),
+    x = g.getWidth()/2,
+    y = g.getHeight()/2,
     width = 0,
     height = 0,
     health = 5
@@ -15,7 +15,7 @@ function Player:new()
 
   -- Physics
   object.body = love.physics.newBody(world, object.x,object.y, "dynamic")
-  object.shape = love.physics.newCircleShape(50)
+  object.shape = love.physics.newCircleShape(25)
   object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Player")-- connect body to shape
   
   setmetatable(object, { __index = Player })
@@ -54,5 +54,5 @@ end
 
 function Player:draw()
   g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
-  g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),  1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
+  g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),  1/2, 1/2, self.image:getWidth()/2, self.image:getHeight()/2)
 end

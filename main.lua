@@ -44,6 +44,7 @@ function love.update(dt)
 end
 
 function love.draw()
+  g.polygon('fill', 100, 100, 200, 100, 150, 200)
   camera:setScale(zoom,zoom)
   g.print("FPS: " .. love.timer.getFPS(), 2, 2)
   camera:set()
@@ -56,7 +57,7 @@ function love.draw()
   -- Draw entities
   s:draw()
  
-  love.graphics.print(text, 10, 10)
+  g.print(text, 10, 10)
   camera:unset()
 end
 
@@ -74,8 +75,8 @@ function beginContact(a, b, coll)
           a:setUserData("DESTROYME")
         end
         -- Play audio sound for collisions on the screen
-        if a:getBody():getX() < camera.x + 1200 and a:getBody():getX() > camera.x then
-          if a:getBody():getY() < camera.y + 800 and a:getBody():getY() > camera.y then
+        if a:getBody():getX() < camera.x + g.getWidth() and a:getBody():getX() > camera.x then
+          if a:getBody():getY() < camera.y + g.getHeight() and a:getBody():getY() > camera.y then
             love.audio.play(explosion)
           end
         end
