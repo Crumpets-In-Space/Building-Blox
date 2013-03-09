@@ -6,11 +6,24 @@ function Star:new(s)
     s = math.random(50, 100)
   end
 
+  local images = {}
+  images[0] = "ColoredStars/bluesun.png"
+  images[1] = "ColoredStars/dkbluesun.png"
+  images[2] = "ColoredStars/green1sun.png"
+  images[3] = "ColoredStars/green2sun.png"
+  images[4] = "ColoredStars/orangesun.png"
+  images[5] = "ColoredStars/pinksun.png"
+  images[6] = "ColoredStars/red1sun.png"
+  images[7] = "ColoredStars/sun.png"
+  images[8] = "ColoredStars/tealsun.png"
+  images[9] = "ColoredStars/whitesun.png"
+  images[10] = "ColoredStars/yellowsun.png"
+
   local object = {
-    image = love.graphics.newImage("asteroid.png"),
-    x = 250,
-    y = 300,
-    value = s 
+    image = love.graphics.newImage(images[math.random(10)]),
+    x = math.random(-2000,2000),
+    y = math.random(-2000,2000),
+    size = s 
   }
   
   -- Physics
@@ -27,5 +40,11 @@ function Star:update()
 end
 
 function Star:draw()
-  g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
+    if self.body:getX() < camera.x + g.getWidth() + excessAtEdgeOfScreen and self.body:getX() > camera.x - excessAtEdgeOfScreen then
+      if self.body:getY() < camera.y + g.getHeight() + excessAtEdgeOfScreen and self.body:getY() > camera.y - excessAtEdgeOfScreen then
+        g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
+        scaleFactor = (self.shape:getRadius() * 2)/(self.image:getWidth() - 800)
+        g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(), scaleFactor, scaleFactor, self.image:getWidth()/2, self.image:getHeight()/2)
+      end
+    end
 end
