@@ -2,6 +2,7 @@ Universe = {}
 
 function Universe:new()
   local object = {
+    solarSystems = {}
   }
 
   setmetatable(object, { __index = Universe })

@@ -2,6 +2,7 @@ SolarSystem = {}
 
 function SolarSystem:new()
   local object = {
+
   }
 
   setmetatable(object, { __index = SolarSystem })
