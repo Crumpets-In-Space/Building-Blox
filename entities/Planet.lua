@@ -23,7 +23,7 @@ function Planet:new()
   return object
 end
 
-function Planet:update()
+function Planet:update(dt)
 end
 
 function Planet:draw()

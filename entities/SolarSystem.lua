@@ -41,7 +41,7 @@ end
 
 function SolarSystem:update(dt)
   for i,v in ipairs(self.planets) do
-    v:update()
+    v:update(dt)
   end
   -- Remove destroyed asteroids
   for i=#self.asteroids,1,-1 do
