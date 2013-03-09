@@ -10,7 +10,7 @@ function Planet:new()
 
   -- Physics
   object.body = love.physics.newBody(world, object.x,object.y, "dynamic")
-  object.shape = love.physics.newCircleShape(50)
+  object.shape = love.physics.newCircleShape(object.size)
   object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Planet")-- connect body to shape
   
   setmetatable(object, { __index = Planet })

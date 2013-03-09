@@ -11,11 +11,9 @@ function love.load()
   require "Player"
   p = Player:new()
   
-  require "entities/Asteroid"
-  a = Asteroid:new()  
-  
-  require "entities/Planet"
-  plan = Planet:new()  
+  require "entities/SolarSystem"
+  s = SolarSystem:new(3)  
+
 end
 
 function love.update(dt)
@@ -32,10 +30,8 @@ function love.draw()
    -- Draw player
    p:draw()
    
-   -- Draw asteroid
-   a:draw()
-   
-   plan:draw()
+   -- Draw entities
+   s:draw()
    
    love.graphics.print(text, 10, 10)
 end
@@ -43,6 +39,13 @@ end
 function beginContact(a, b, coll)
     x,y = coll:getNormal()
     text = text.."\n"..a:getUserData().." colliding with "..b:getUserData().." with a vector normal of: "..x..", "..y
+    
+    if a:getUserData() == b:getUserData() then
+      -- determine type
+      if a:getUserData() == 'Asteroid' then
+        a:destroy()
+      end
+    end
 end
 
 
