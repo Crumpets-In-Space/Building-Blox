@@ -9,6 +9,7 @@ function love.load()
    text       = ""
    
   -- Game world
+  love.physics.setMeter(30)
   world = love.physics.newWorld( 0, 0, true )
     --These callback function names can be almost any you want:
     world:setCallbacks(beginContact, endContact)
@@ -125,7 +126,7 @@ function beginContact(a, b, coll)
         -- Play audio sound for collisions on the screen
         if a:getBody():getX() < camera.x + g.getWidth() and a:getBody():getX() > camera.x then
           if a:getBody():getY() < camera.y + g.getHeight() and a:getBody():getY() > camera.y then
-            love.audio.play(explosion)
+            --love.audio.play(explosion)
           end
         end
       end

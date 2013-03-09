@@ -22,9 +22,8 @@ function SolarSystem:new(sizeOfStar)
   plan[1] = Planet:new()
 
   require "entities/Asteroid"
-  for i=1,(math.random(1000,1500)),1 do
+  for i=1,(math.random(500,1000)),1 do
     ast[i] = Asteroid:new()
-    ast[i].body:applyForce(math.random(-50,50),math.random(-50,50))
 --    v = v + ast[i].value
   end
 
