@@ -30,7 +30,7 @@ function Player:new()
     i = love.graphics.newImage(id)
   
   object.p = love.graphics.newParticleSystem( i, 512 )
-  object.p:setEmissionRate          (200)
+  object.p:setEmissionRate          (500)
   object.p:setLifetime              (4)
   object.p:setParticleLife          (1)
   object.p:setPosition              (0, 0)
@@ -59,17 +59,26 @@ end
 function Player:update(dt)  
   x, y = self.body:getLinearVelocity( )
   
+  if self.shape:getRadius() < 50 then
+    speed = 100
+  elseif self.shape:getRadius() < 100 then
+    speed = 200
+  elseif self.shape:getRadius() < 150 then
+    speed = 300
+  end
+  
+  
   if love.keyboard.isDown("right") and x < 300 then
     self.body:applyForce(300, 0)
     --love.audio.play(rocket)
     self.p:setDirection(math.pi)
-    self.p:setSpeed(100, 0)
+    self.p:setSpeed(speed, 0)
     self.p:start()
   elseif love.keyboard.isDown("left") and x > -300 then
     self.body:applyForce(-300, 0)
     --love.audio.play(rocket)
     self.p:setDirection(2*math.pi)
-    self.p:setSpeed(100, 0)
+    self.p:setSpeed(speed, 0)
     self.p:start()
   end
   
@@ -77,13 +86,13 @@ function Player:update(dt)
     self.body:applyForce(0, 300)
     --love.audio.play(rocket)
     self.p:setDirection(3*math.pi/2)
-    self.p:setSpeed(0, 100)
+    self.p:setSpeed(0, speed)
     self.p:start()
   elseif love.keyboard.isDown("up") and y > -300 then
     self.body:applyForce(0, -300)
     --love.audio.play(rocket)
     self.p:setDirection(math.pi/2)
-    self.p:setSpeed(0, 100)
+    self.p:setSpeed(0, speed)
     self.p:start()
   end
   
