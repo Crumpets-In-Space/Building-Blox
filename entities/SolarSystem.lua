@@ -34,7 +34,10 @@ function SolarSystem:new(sizeOfStar)
  --   value = v,
     asteroids = ast
   }
-
+  
+  -- SOUNDS
+  explosion = love.audio.newSource("Sounds/explosion.wav","static")
+  
   setmetatable(object, { __index = SolarSystem })
   return object
 end
@@ -59,6 +62,7 @@ function SolarSystem:update(dt)
       -- Play audio sound for collisions on the screen
       if self.asteroids[i].body:getX() < camera.x + g.getWidth() and self.asteroids[i].body:getX() > camera.x then
         if self.asteroids[i].body:getY() < camera.y + g.getHeight() and self.asteroids[i].body:getY() > camera.y then
+          love.audio.stop(explosion)
           love.audio.play(explosion)
         end
       end

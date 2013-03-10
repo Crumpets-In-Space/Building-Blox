@@ -24,9 +24,9 @@ function love.load()
   
   require "entities/SolarSystem"
   s = SolarSystem:new()  
-
+  
   -- SOUNDS
-  explosion = love.audio.newSource("Sounds/explosion.wav","static")
+  damage = love.audio.newSource("Sounds/damage.wav","static")
   
   -- IMAGES
   --bkgrnd = g.newImage("imgs/nightsky.jpg")
@@ -141,6 +141,9 @@ function beginContact(a, b, coll)
       
       if object > sizeOfPlayer then
         p.health = p.health - 1
+        
+        love.audio.stop(damage)
+        love.audio.play(damage)
       end
     end
 end
