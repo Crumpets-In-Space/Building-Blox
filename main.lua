@@ -89,7 +89,8 @@ function love.draw()
   --ADMIN
   if admin then
     g.print("FPS: " .. love.timer.getFPS(), 2, 2)
-    g.print("Number of Asteroids: " .. #s.asteroids, 2, 20)
+    g.print("Zoom level: " .. zoom, 2, 22)
+    g.print("Number of Asteroids: " .. #s.asteroids, 2, 42)
   end
   
   camera:set()

@@ -21,8 +21,8 @@ function Star:new(s)
 
   local object = {
     image = love.graphics.newImage(images[math.random(0,10)]),
-    x = math.random(-2000,2000),
-    y = math.random(-2000,2000),
+    x = math.random(-5000,5000),
+    y = math.random(-5000,5000),
     size = s 
   }
   
