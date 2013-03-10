@@ -1,8 +1,12 @@
 Planet = {}
 
 function Planet:new(sun, i)
+  local images = {}
+  images[0] = "imgs/Planets/redPlanets.png"
+  images[1] = "imgs/Planets/redPlanets.png"
+  
   local object = {
-    image = love.graphics.newImage("imgs/asteroid.png"),
+    image = love.graphics.newImage(images[math.random(1)]),
     x = sun.x + 500 * i,
     y = sun.y,
     radius = math.random(20, 60)
@@ -40,6 +44,9 @@ end
 
 function Planet:draw()
   g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
+
+  scaleFactor = (self.shape:getRadius() * 2)/(self.image:getWidth())
+  g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(), scaleFactor, scaleFactor, self.image:getWidth()/2, self.image:getHeight()/2)
 
   excessAtEdgeOfScreen = 10
   

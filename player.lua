@@ -2,7 +2,7 @@ Player = {}
  
 -- Constructor
 function Player:new()
-  -- define our parameters here
+  -- define our parameters here 
   local object = {
     value = 10,
     image = g.newImage("imgs/player.png"),
@@ -26,26 +26,26 @@ function Player:new()
         id:setPixel(x, y, math.random(200,255), math.random(0,150), math.random(0,100), 255*(gradient<0 and 0 or gradient))
       end
     end
-  
     --2. create an image from that image data
     i = love.graphics.newImage(id)
   
   object.p = love.graphics.newParticleSystem( i, 512 )
   object.p:setEmissionRate          (200)
-    object.p:setLifetime              (4)
-    object.p:setParticleLife          (1)
-    object.p:setPosition              (0, 0)
-    object.p:setDirection             (0)
-    object.p:setSpread                (1)
-    object.p:setSpeed                 (100, 0)
-    object.p:setGravity               (30)
-    object.p:setRadialAcceleration    (5)
-    object.p:setTangentialAcceleration(0)
-    object.p:setSizeVariation         (0.5)
-    object.p:setRotation              (0)
-    object.p:setSpin                  (0)
-    object.p:setSpinVariation         (0)
-    object.p:stop()
+  object.p:setLifetime              (4)
+  object.p:setParticleLife          (1)
+  object.p:setPosition              (0, 0)
+  object.p:setDirection             (0)
+  object.p:setSpread                (1)
+  object.p:setSpeed                 (100, 0)
+  object.p:setGravity               (30)
+  object.p:setRadialAcceleration    (5)
+  object.p:setTangentialAcceleration(0)
+  object.p:setSizeVariation         (0.5)
+  object.p:setRotation              (0)
+  object.p:setSpin                  (0)
+  object.p:setSpinVariation         (0)
+  object.p:stop()
+  
   -- SOUNDS
   rocket = love.audio.newSource("Sounds/rocket.wav","static")
   rocket:setPitch(0.5) -- one octave lower
@@ -59,28 +59,28 @@ end
 function Player:update(dt)  
   x, y = self.body:getLinearVelocity( )
   
-  if love.keyboard.isDown("right") and x < 500 then
-    self.body:applyForce(500, 0)
+  if love.keyboard.isDown("right") and x < 300 then
+    self.body:applyForce(300, 0)
     --love.audio.play(rocket)
     self.p:setDirection(math.pi)
     self.p:setSpeed(100, 0)
     self.p:start()
-  elseif love.keyboard.isDown("left") and x > -500 then
-    self.body:applyForce(-500, 0)
+  elseif love.keyboard.isDown("left") and x > -300 then
+    self.body:applyForce(-300, 0)
     --love.audio.play(rocket)
     self.p:setDirection(2*math.pi)
     self.p:setSpeed(100, 0)
     self.p:start()
   end
   
-  if love.keyboard.isDown("down") and y < 500 then
-    self.body:applyForce(0, 500)
+  if love.keyboard.isDown("down") and y < 300 then
+    self.body:applyForce(0, 300)
     --love.audio.play(rocket)
     self.p:setDirection(3*math.pi/2)
     self.p:setSpeed(0, 100)
     self.p:start()
-  elseif love.keyboard.isDown("up") and y > -500 then
-    self.body:applyForce(0, -500)
+  elseif love.keyboard.isDown("up") and y > -300 then
+    self.body:applyForce(0, -300)
     --love.audio.play(rocket)
     self.p:setDirection(math.pi/2)
     self.p:setSpeed(0, 100)
