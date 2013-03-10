@@ -60,6 +60,9 @@ function SolarSystem:update(dt)
         end
       end
       table.remove(self.asteroids, i)
+      --elseif self.asteroids[i].fixture:getUserData() == 'PlayerSTICKIES' then
+        --self.asteroids[i].fixture:destroy()
+        --love.physics.newFixture(p.body, self.asteroids[i].shape,1)
     end
   end
 
@@ -84,7 +87,6 @@ function SolarSystem:update(dt)
 end
 
 function SolarSystem:draw()
-  
   for i,v in ipairs(self.asteroids) do
     if v.body:getX() < camera.x + g.getWidth() + excessAtEdgeOfScreen and v.body:getX() > camera.x - excessAtEdgeOfScreen then
       if v.body:getY() < camera.y + g.getHeight() + excessAtEdgeOfScreen and v.body:getY() > camera.y - excessAtEdgeOfScreen then

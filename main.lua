@@ -151,6 +151,11 @@ function beginContact(a, b, coll)
         
         love.audio.stop(damage)
         love.audio.play(damage)
+      else
+        newR = math.sqrt(((math.pi * (sizeOfPlayer*sizeOfPlayer))+(math.pi * (object*object)))/math.pi)
+        a:getShape():setRadius(newR)
+        -- Absorb the object
+        --b:setUserData('PlayerSTICKIES')
       end
     end
 end
