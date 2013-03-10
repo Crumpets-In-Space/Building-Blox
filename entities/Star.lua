@@ -3,7 +3,7 @@ Star = {}
 function Star:new(s)
   
   if not s then
-    s = math.random(150, 300)
+    s = math.random(200, 400)
   end
 
   local images = {}
@@ -29,7 +29,8 @@ function Star:new(s)
   -- Physics
   object.body = love.physics.newBody(world, object.x,object.y, "dynamic")
   object.shape = love.physics.newCircleShape(object.size)
-  object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Star")-- connect body to shape
+  object.fixture = love.physics.newFixture(object.body, object.shape)
+  object.fixture:setUserData("Star")-- connect body to shape
   object.body:setMass(1000*object.size)
 
   setmetatable(object, { __index = Star })

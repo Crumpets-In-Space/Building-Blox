@@ -73,6 +73,12 @@ function SolarSystem:update(dt)
     end
   end
   
+  -- Remove destroyed suns
+    if self.sun.fixture:getUserData() == "DESTROYME" then
+      self.sun.body:destroy()
+      self.sun = nil
+    end
+  
   actor = self.sun.body
   for i,v in ipairs(self.planets) do
     actress = v.body

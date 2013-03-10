@@ -21,6 +21,7 @@ function love.load()
   p = Player:new()
   sRelp = ""
   admin = false
+  map = false
   
   require "entities/SolarSystem"
   s = SolarSystem:new()  
@@ -54,6 +55,11 @@ function love.update(dt)
   if love.keyboard.isDown("a") then
     admin = true
   end
+  if love.keyboard.isDown("lshift") then
+    if map == true then map = false 
+      else map = true end
+  end
+
   if love.keyboard.isDown("r") then
     p = nil
     p = Player:new()
@@ -138,6 +144,16 @@ function love.draw()
     g.setFont( g.newFont(20) )
     score = math.floor(((p.shape:getRadius()*math.pi)/2) * 1000)
     g.print("Size: " .. score,g.getWidth() - 600, 150)
+    
+  --MAP
+  if map then
+    g.setColor(155, 155, 155)
+    g.rectangle ("fill", 20, 20, 300,300)
+    
+    for i,v in ipairs(s.planets) do
+      g.rectangle ("fill", 20, 20, 10,10)
+    end
+  end  
 end
 
 function beginContact(a, b, coll)
