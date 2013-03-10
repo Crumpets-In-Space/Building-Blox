@@ -156,6 +156,7 @@ function beginContact(a, b, coll)
         a:getShape():setRadius(newR)
         p.shape:setRadius(newR)
         p:draw()
+        b:setUserData("DESTROYME")
         -- Absorb the object
         --b:setUserData('PlayerSTICKIES')
       end

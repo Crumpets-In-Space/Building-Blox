@@ -61,13 +61,13 @@ function Player:update(dt)
   
   if love.keyboard.isDown("right") and x < 500 then
     self.body:applyForce(500, 0)
-    love.audio.play(rocket)
+    --love.audio.play(rocket)
     self.p:setDirection(math.pi)
     self.p:setSpeed(100, 0)
     self.p:start()
   elseif love.keyboard.isDown("left") and x > -500 then
     self.body:applyForce(-500, 0)
-    love.audio.play(rocket)
+    --love.audio.play(rocket)
     self.p:setDirection(2*math.pi)
     self.p:setSpeed(100, 0)
     self.p:start()
@@ -75,13 +75,13 @@ function Player:update(dt)
   
   if love.keyboard.isDown("down") and y < 500 then
     self.body:applyForce(0, 500)
-    love.audio.play(rocket)
+    --love.audio.play(rocket)
     self.p:setDirection(3*math.pi/2)
     self.p:setSpeed(0, 100)
     self.p:start()
   elseif love.keyboard.isDown("up") and y > -500 then
     self.body:applyForce(0, -500)
-    love.audio.play(rocket)
+    --love.audio.play(rocket)
     self.p:setDirection(math.pi/2)
     self.p:setSpeed(0, 100)
     self.p:start()
@@ -119,7 +119,7 @@ end
 
 function Player:draw()
   love.graphics.draw(self.p, self.body:getX(), self.body:getY())
-  g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
+  --g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
   scaleFactor = (self.shape:getRadius() * 2)/(self.image:getWidth())
   g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),  scaleFactor, scaleFactor, self.image:getWidth()/2, self.image:getHeight()/2)
 end
