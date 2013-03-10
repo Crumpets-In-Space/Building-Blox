@@ -13,7 +13,7 @@ function Moon:new(planet, i)
     image = love.graphics.newImage(images[0]),
     x = newX,
     y = newY,
-    radius = math.random(15, 20)
+    radius = math.random(20, 40)
   }
 
   object.planet = planet
