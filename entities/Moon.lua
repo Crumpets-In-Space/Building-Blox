@@ -1,20 +1,10 @@
 Moon = {}
 
-function Moon:new(xPos, yPos, radius, i)
-  newX = xPos + radius
-  newY = yPos + radius
+function Moon:new(planet, i)
+  newX = planet.x + planet.radius
+  newY = planet.y
 
-  if math.random(2) == 1 then 
-    newX = newX + math.random(30,50) * i * -1 
-  else
-    newX = newX + math.random(30,50) * i
-  end
-
-  if math.random(2) == 1 then 
-    newY = newY + math.random(30,50) * i * -1 
-  else
-    newY = newY + math.random(30,50) * i
-  end
+  newX = newX + math.random(30,50) * i  
 
   local object = {
     image = love.graphics.newImage("asteroid.png"),
@@ -23,17 +13,17 @@ function Moon:new(xPos, yPos, radius, i)
     value = math.random(5, 9)
   }
 
+  object.planet = planet
   -- Physics
   object.body = love.physics.newBody(world, object.x,object.y, "dynamic")
   object.shape = love.physics.newCircleShape(object.value)
   object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Moon")-- connect body to shape
-  
+  object.body:applyForce(500, 10000)
   setmetatable(object, { __index = Moon })
   return object
 end
 
 function Moon:update()
-
 end
 
 function Moon:draw()

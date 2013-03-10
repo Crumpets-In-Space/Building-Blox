@@ -23,10 +23,17 @@ function Planet:new()
   return object
 end
 
-function Planet:update()
-  x, y = self.body:getLinearVelocity()
+function Planet:update(dt)
+  planet = self.body
   for i,v in ipairs(self.moons) do
-    v.body:setLinearVelocity(x, y) 
+    moon = v.body
+    moonVec = vector(moon:getX(), moon:getY())
+    planetVec = vector(planet:getX(), planet:getY())
+    distance = planetVec - moonVec
+    force = 40 / distance:len2()
+    normforce = force*distance
+    print ("Norm: "..normforce.x..","..normforce.y)
+    moon:applyLinearImpulse(normforce.x, normforce.y, moon:getX(), moon:getY())
   end
 end
 

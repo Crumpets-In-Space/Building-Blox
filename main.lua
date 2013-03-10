@@ -4,6 +4,8 @@ function love.load()
   excessAtEdgeOfScreen = 10
   zoom = 1
   
+  vector = require 'hump.vector'
+
   -- graphics love
   g = love.graphics
    text       = ""
@@ -26,10 +28,8 @@ function love.load()
   -- SOUNDS
   explosion = love.audio.newSource("Sounds/explosion.wav","static")
   
-  
   -- IMAGES
   bkgrnd = g.newImage("background.jpg")
-
 end
 
 function love.update(dt)

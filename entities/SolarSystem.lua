@@ -25,6 +25,7 @@ function SolarSystem:new(sizeOfStar)
   for i=1,(math.random(500,1000)),1 do
     ast[i] = Asteroid:new()
 --    v = v + ast[i].value
+    ast[i].body:applyForce(math.random(-300,300),math.random(-300,300))
   end
 
   local object = {
@@ -51,7 +52,7 @@ function SolarSystem:update(dt)
           else r = 1.3
           end
           ass = Asteroid:new(self.asteroids[i].shape:getRadius()/r, self.asteroids[i].body:getX() + (5*j),  self.asteroids[i].body:getY() + (5*j))
-          ass.body:applyForce(math.random(-300,300),math.random(-300,300))
+          
           table.insert(self.asteroids, ass)
         end
       end
