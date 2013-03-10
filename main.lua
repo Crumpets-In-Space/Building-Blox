@@ -143,7 +143,7 @@ function beginContact(a, b, coll)
     
     -- The player colliding with something
     if a:getUserData() == "Player" then
-      sizeOfPlayer = a:getShape():getRadius()
+      sizeOfPlayer = p.shape:getRadius()
       object = b:getShape():getRadius()
       
       if object > sizeOfPlayer then
@@ -154,6 +154,8 @@ function beginContact(a, b, coll)
       else
         newR = math.sqrt(((math.pi * (sizeOfPlayer*sizeOfPlayer))+(math.pi * (object*object)))/math.pi)
         a:getShape():setRadius(newR)
+        p.shape:setRadius(newR)
+        p:draw()
         -- Absorb the object
         --b:setUserData('PlayerSTICKIES')
       end

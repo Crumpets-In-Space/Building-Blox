@@ -120,7 +120,8 @@ end
 function Player:draw()
   love.graphics.draw(self.p, self.body:getX(), self.body:getY())
   g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
-  g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),  1/13, 1/13, self.image:getWidth()/2, self.image:getHeight()/2)
+  scaleFactor = (self.shape:getRadius() * 2)/(self.image:getWidth())
+  g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),  scaleFactor, scaleFactor, self.image:getWidth()/2, self.image:getHeight()/2)
 end
 
 function love.keyreleased(key)
