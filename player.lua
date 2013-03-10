@@ -67,16 +67,15 @@ function Player:update(dt)
     speed = 300
   end
   
-  
   if love.keyboard.isDown("right") and x < 300 then
     self.body:applyForce(300, 0)
-    --love.audio.play(rocket)
+    love.audio.play(rocket)
     self.p:setDirection(math.pi)
     self.p:setSpeed(speed, 0)
     self.p:start()
   elseif love.keyboard.isDown("left") and x > -300 then
     self.body:applyForce(-300, 0)
-    --love.audio.play(rocket)
+    love.audio.play(rocket)
     self.p:setDirection(2*math.pi)
     self.p:setSpeed(speed, 0)
     self.p:start()
@@ -84,13 +83,13 @@ function Player:update(dt)
   
   if love.keyboard.isDown("down") and y < 300 then
     self.body:applyForce(0, 300)
-    --love.audio.play(rocket)
+    love.audio.play(rocket)
     self.p:setDirection(3*math.pi/2)
     self.p:setSpeed(0, speed)
     self.p:start()
   elseif love.keyboard.isDown("up") and y > -300 then
     self.body:applyForce(0, -300)
-    --love.audio.play(rocket)
+    love.audio.play(rocket)
     self.p:setDirection(math.pi/2)
     self.p:setSpeed(0, speed)
     self.p:start()
@@ -98,19 +97,19 @@ function Player:update(dt)
   
   if love.keyboard.isDown("left") and love.keyboard.isDown("up") then
     self.p:setDirection(math.pi/4)
-    self.p:setSpeed(75, 75)
+    self.p:setSpeed(speed, speed)
     self.p:start()
   elseif love.keyboard.isDown("left") and love.keyboard.isDown("down") then
     self.p:setDirection(7*math.pi/4)
-    self.p:setSpeed(75, 75)
+    self.p:setSpeed(speed, speed)
     self.p:start()
   elseif love.keyboard.isDown("right") and love.keyboard.isDown("up") then
     self.p:setDirection(3*math.pi/4)
-    self.p:setSpeed(75, 75)
+    self.p:setSpeed(speed, speed)
     self.p:start()
   elseif love.keyboard.isDown("right") and love.keyboard.isDown("down") then
     self.p:setDirection(5*math.pi/4)
-    self.p:setSpeed(75, 75)
+    self.p:setSpeed(speed, speed)
     self.p:start()
   end
   
