@@ -56,6 +56,12 @@ function SolarSystem:update(dt)
           table.insert(self.asteroids, ass)
         end
       end
+      -- Play audio sound for collisions on the screen
+      if self.asteroids[i].body:getX() < camera.x + g.getWidth() and self.asteroids[i].body:getX() > camera.x then
+        if self.asteroids[i].body:getY() < camera.y + g.getHeight() and self.asteroids[i].body:getY() > camera.y then
+          love.audio.play(explosion)
+        end
+      end
       table.remove(self.asteroids, i)
     end
   end

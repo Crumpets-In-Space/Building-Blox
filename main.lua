@@ -119,12 +119,6 @@ function beginContact(a, b, coll)
         else
           a:setUserData("DESTROYME")
         end
-        -- Play audio sound for collisions on the screen
-        if a:getBody():getX() < camera.x + g.getWidth() and a:getBody():getX() > camera.x then
-          if a:getBody():getY() < camera.y + g.getHeight() and a:getBody():getY() > camera.y then
-            love.audio.play(explosion)
-          end
-        end
       end
     end
     
