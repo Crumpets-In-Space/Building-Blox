@@ -29,7 +29,7 @@ function love.load()
   explosion = love.audio.newSource("Sounds/explosion.wav","static")
   
   -- IMAGES
-  bkgrnd = g.newImage("imgs/background.jpg")
+  --bkgrnd = g.newImage("imgs/nightsky.jpg")
 end
 
 function love.update(dt)
@@ -79,7 +79,7 @@ function love.draw()
   g.setFont( g.newFont(14) )
   g.print("The Sun is " ..sRelp, g.getWidth() - 400, 400)
 
-  --g.draw(bkgrnd,0,0)
+  --g.draw(bkgrnd,0 - bkgrnd:getWidth()/2,0 - bkgrnd:getHeight()/2)
 
   if gameover then
     g.setColor(255, 255, 255) -- white
