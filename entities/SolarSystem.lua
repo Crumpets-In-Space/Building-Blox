@@ -11,27 +11,20 @@ function SolarSystem:new(sizeOfStar)
   ast = {}
 
   --numOfPlanets = ((s.size+9)*math.floor(s.size/100))
-  --v = s.value
-
   require "entities/Planet"
   for i=1,10,1 do
-   --plan[i] = Planet:new()
-   --v += plan[i].value
+    plan[i] = Planet:new(s, i)
   end
-
-  plan[1] = Planet:new()
 
   require "entities/Asteroid"
   for i=1,(math.random(500,1000)),1 do
     ast[i] = Asteroid:new()
---    v = v + ast[i].value
     ast[i].body:applyForce(math.random(-300,300),math.random(-300,300))
   end
 
   local object = {
     sun = s,
     planets = plan,
- --   value = v,
     asteroids = ast
   }
 
@@ -58,6 +51,17 @@ function SolarSystem:update(dt)
       end
       table.remove(self.asteroids, i)
     end
+  end
+
+  star = self.sun.body
+  for i,v in ipairs(self.planets) do
+    planet = v.body
+    moonVec = vector(planet:getX(), planet:getY())
+    planetVec = vector(star:getX(), star:getY())
+    distance = planetVec - moonVec
+    force = (250 * star:getMass()) / distance:len2()
+    normforce = force*distance
+    planet:applyLinearImpulse(normforce.x, normforce.y, planet:getX(), planet:getY())
   end
 end
 

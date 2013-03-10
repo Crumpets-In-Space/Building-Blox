@@ -1,17 +1,19 @@
 Planet = {}
 
-function Planet:new()
+function Planet:new(sun, i)
   local object = {
     image = love.graphics.newImage("asteroid.png"),
-    x = 350,
-    y = 150,
-    radius = math.random(10, 40)
+    x = sun.x + 1000 * i,
+    y = sun.y,
+    radius = math.random(20, 60)
   }
 
   -- Physics
   object.body = love.physics.newBody(world, object.x,object.y, "dynamic")
   object.shape = love.physics.newCircleShape(object.radius)
   object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Planet")-- connect body to shape
+  object.body:setMass(10*object.radius)
+  object.body:applyLinearImpulse(0, -10000*i)
 
   require 'entities/Moon'
   object.moons = {}
@@ -30,9 +32,8 @@ function Planet:update(dt)
     moonVec = vector(moon:getX(), moon:getY())
     planetVec = vector(planet:getX(), planet:getY())
     distance = planetVec - moonVec
-    force = 40 / distance:len2()
+    force = 250 / distance:len2()
     normforce = force*distance
-    print ("Norm: "..normforce.x..","..normforce.y)
     moon:applyLinearImpulse(normforce.x, normforce.y, moon:getX(), moon:getY())
   end
 end
