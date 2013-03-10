@@ -60,6 +60,7 @@ function SolarSystem:update(dt)
           love.audio.play(explosion)
         end
       end
+      self.asteroids[i].body:destroy()
       table.remove(self.asteroids, i)
     end
   end
@@ -67,6 +68,7 @@ function SolarSystem:update(dt)
   -- Remove destroyed planets
   for x=#self.planets,1,-1 do
     if self.planets[x].fixture:getUserData() == "DESTROYME" then
+      self.planets[x].body:destroy()
       table.remove(self.planets, x)
     end
   end

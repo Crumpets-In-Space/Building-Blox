@@ -6,8 +6,11 @@ function Moon:new(planet, i)
 
   newX = newX + (100 * i) 
 
+  local images = {}
+  images[0] = "imgs/Moons/moon1.png"
+  
   local object = {
-    image = love.graphics.newImage("imgs/asteroid.png"),
+    image = love.graphics.newImage(images[0]),
     x = newX,
     y = newY,
     radius = math.random(15, 20)
@@ -30,5 +33,7 @@ function Moon:update()
 end
 
 function Moon:draw()
-  g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
+  --g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
+  scaleFactor = (self.shape:getRadius() * 2)/(self.image:getWidth())
+  g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(), scaleFactor, scaleFactor, self.image:getWidth()/2, self.image:getHeight()/2)
 end
