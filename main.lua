@@ -1,7 +1,7 @@
 function love.load()
   --camera
   require "camera"
-  excessAtEdgeOfScreen = 10
+  excessAtEdgeOfScreen = 100
   zoom = 1
   
   vector = require 'hump.vector'
@@ -80,7 +80,7 @@ function love.draw()
 
   if gameover then
     g.setColor(255, 255, 255) -- white
-    g.print("GAME OVER", g.getWidth()/2 - 35, g.getHeight()/2 + 50)
+    g.print("GAME OVER", g.getWidth()/2 - 40, 150)
   end
   
   camera:setScale(zoom,zoom)
