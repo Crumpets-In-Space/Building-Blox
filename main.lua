@@ -54,6 +54,16 @@ function love.update(dt)
   if love.keyboard.isDown("a") then
     admin = true
   end
+  if love.keyboard.isDown("r") then
+    p = nil
+    p = Player:new()
+    
+    s = nil
+    s = SolarSystem:new()  
+    
+    camera:setPosition(0, 0)
+    zoom = 0.25
+  end
   
   -- determine sun position relative to player
   sx = s.sun.body:getX( )
@@ -80,6 +90,7 @@ function love.draw()
   if gameover then
     g.setColor(255, 255, 255) -- white
     g.print("GAME OVER", g.getWidth()/2 - 40, 150)
+    g.print("Press r to restart", g.getWidth()/2 - 50, 200)
   end
   
   camera:setScale(zoom,zoom)

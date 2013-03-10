@@ -3,7 +3,7 @@ Star = {}
 function Star:new(s)
   
   if not s then
-    s = math.random(200, 400)
+    s = math.random(150, 300)
   end
 
   local images = {}

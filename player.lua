@@ -10,7 +10,7 @@ function Player:new()
     y = g.getHeight()/2,
     width = 0,
     height = 0,
-    health = 10
+    health = 5
   }
 
   -- Physics
