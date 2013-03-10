@@ -8,9 +8,11 @@ function Moon:new(planet, i)
 
   local images = {}
   images[0] = "imgs/Moons/moon1.png"
+  images[1] = "imgs/Moons/moon3.png"
+  images[2] = "imgs/Moons/flame.png"
   
   local object = {
-    image = love.graphics.newImage(images[0]),
+    image = love.graphics.newImage(images[math.random(0, 2)]),
     x = newX,
     y = newY,
     radius = math.random(15, 20)
