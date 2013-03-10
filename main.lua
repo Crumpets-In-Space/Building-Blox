@@ -105,7 +105,7 @@ function love.draw()
   
   -- HUD
     -- COMPASS
-    --g.print("The Sun is " ..sRelp, g.getWidth() - 400, 400)
+    --g.print("The Sun is " ..sRelp, g.getWidth() - 400, 400)  
     g.draw(compass, g.getWidth() - 200, 100, 0, 0.25, 0.25)
     center = g.getWidth() - 120
     if sRelp == 'NW' then g.line (center, 180, center - 70, 120)
@@ -124,7 +124,8 @@ function love.draw()
   
     -- Score
     g.setColor(255, 255, 255) -- white
-    g.print("Score: " .. p.value,g.getWidth() - 400, 150)
+    score = math.floor(((p.shape:getRadius()*math.pi)/2) * 1000)
+    g.print("Size: " .. score,g.getWidth() - 400, 150)
 end
 
 function beginContact(a, b, coll)
