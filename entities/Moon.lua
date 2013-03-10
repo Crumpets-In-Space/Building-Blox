@@ -17,7 +17,8 @@ function Moon:new(planet, i)
   -- Physics
   object.body = love.physics.newBody(world, object.x,object.y, "dynamic")
   object.shape = love.physics.newCircleShape(object.radius)
-  object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Moon")-- connect body to shape
+  object.fixture = love.physics.newFixture(object.body, object.shape)
+  object.fixture:setUserData("Moon")-- connect body to shape
   object.body:setMass(50*object.radius)
   pX, pY = planet.body:getLinearVelocity()
   object.body:applyLinearImpulse(0, 10000)

@@ -39,6 +39,7 @@ function SolarSystem:update(dt)
   for i,v in ipairs(self.planets) do
     v:update(dt)
   end
+  
   -- Remove destroyed asteroids
   for i=#self.asteroids,1,-1 do
     if self.asteroids[i]:isDestroyed() then
@@ -62,7 +63,14 @@ function SolarSystem:update(dt)
       table.remove(self.asteroids, i)
     end
   end
-
+  
+  -- Remove destroyed planets
+  for x=#self.planets,1,-1 do
+    if self.planets[x].fixture:getUserData() == "DESTROYME" then
+      table.remove(self.planets, x)
+    end
+  end
+  
   actor = self.sun.body
   for i,v in ipairs(self.planets) do
     actress = v.body
