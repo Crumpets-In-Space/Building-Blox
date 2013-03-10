@@ -15,7 +15,7 @@ function Planet:new(sun, i)
     image = love.graphics.newImage(images[math.random(0,7)]),
     x = sun.x + 500 * i,
     y = sun.y,
-    radius = math.random(20, 60)
+    radius = math.random(20, 80)
   }
 
   -- Physics
