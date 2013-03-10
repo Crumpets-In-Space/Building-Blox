@@ -20,6 +20,7 @@ function love.load()
   require "Player"
   p = Player:new()
   sRelp = ""
+  admin = false
   
   require "entities/SolarSystem"
   s = SolarSystem:new()  
@@ -50,6 +51,9 @@ function love.update(dt)
   if love.keyboard.isDown("c") then
     zoom = 0.25 --zoom - 0.1
   end
+  if love.keyboard.isDown("a") then
+    admin = true
+  end
   
   
   
@@ -72,7 +76,7 @@ function love.update(dt)
 end
 
 function love.draw()
-  g.setFont( g.newFont(20) )
+  g.setFont( g.newFont(14) )
   g.print("The Sun is " ..sRelp, g.getWidth() - 400, 400)
 
   --g.draw(bkgrnd,0,0)
@@ -93,7 +97,12 @@ function love.draw()
   camera:setScale(zoom,zoom)
   
   g.setColor(255, 255, 255) -- white
-  g.print("FPS: " .. love.timer.getFPS(), 2, 2)
+  
+  --ADMIN
+  if admin then
+    g.print("FPS: " .. love.timer.getFPS(), 2, 2)
+    g.print("Number of Asteroids: " .. #s.asteroids, 2, 20)
+  end
   
   g.print("Score: " .. p.value,g.getWidth() - 400, 150)
   
