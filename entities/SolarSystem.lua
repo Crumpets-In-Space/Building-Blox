@@ -12,7 +12,7 @@ function SolarSystem:new(sizeOfStar)
 
   --numOfPlanets = ((s.size+9)*math.floor(s.size/100))
   require "entities/Planet"
-  for i=1,10,1 do
+  for i=1,20,1 do
     plan[i] = Planet:new(s, i)
   end
 
