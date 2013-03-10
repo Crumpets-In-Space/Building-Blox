@@ -30,6 +30,7 @@ function love.load()
   
   -- IMAGES
   --bkgrnd = g.newImage("imgs/nightsky.jpg")
+  compass = g.newImage('imgs/compass.png')
 end
 
 function love.update(dt)
@@ -77,7 +78,6 @@ end
 
 function love.draw()
   g.setFont( g.newFont(14) )
-  g.print("The Sun is " ..sRelp, g.getWidth() - 400, 400)
 
   --g.draw(bkgrnd,0 - bkgrnd:getWidth()/2,0 - bkgrnd:getHeight()/2)
 
@@ -107,6 +107,15 @@ function love.draw()
   camera:unset()
   
   -- HUD
+    -- COMPASS
+    --g.print("The Sun is " ..sRelp, g.getWidth() - 400, 400)
+    g.draw(compass, g.getWidth() - 200, 100, 0, 0.25, 0.25)
+    center = g.getWidth() - 120
+    if sRelp == 'NW' then g.line (center, 180, center - 80, 120)
+    elseif sRelp == 'NE' then g.line (center, 180, center + 80, 120)
+    elseif sRelp == 'SW' then g.line (center, 180, center - 80, 260)
+    elseif sRelp == 'SE' then g.line (center, 180, center + 80, 260) end
+    
     -- Health
     for i=1,p.health,1 do
       -- Heart

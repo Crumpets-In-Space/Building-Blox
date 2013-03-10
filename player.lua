@@ -30,7 +30,6 @@ function Player:new()
     --2. create an image from that image data
     i = love.graphics.newImage(id)
   
-  
   object.p = love.graphics.newParticleSystem( i, 512 )
   object.p:setEmissionRate          (200)
     object.p:setLifetime              (4)
