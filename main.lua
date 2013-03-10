@@ -43,15 +43,14 @@ function love.update(dt)
   -- update Solar System
   s:update(dt)
   
-  if love.keyboard.isDown("z") then
+  if p.shape:getRadius() < 50 then
+    zoom = 0.25 --zoom - 0.1
+  elseif p.shape:getRadius() < 100 then
     zoom = 0.5 --zoom + 0.1
-  end
-  if love.keyboard.isDown("x") then
+  elseif p.shape:getRadius() < 150 then
     zoom = 1 --zoom - 0.1
   end
-  if love.keyboard.isDown("c") then
-    zoom = 0.25 --zoom - 0.1
-  end
+  
   if love.keyboard.isDown("a") then
     admin = true
   end
@@ -106,12 +105,12 @@ function love.draw()
   -- HUD
     -- COMPASS
     --g.print("The Sun is " ..sRelp, g.getWidth() - 400, 400)  
-    g.draw(compass, g.getWidth() - 200, 100, 0, 0.25, 0.25)
+    g.draw(compass, g.getWidth() - 200, 150, 0, 0.25, 0.25)
     center = g.getWidth() - 120
-    if sRelp == 'NW' then g.line (center, 180, center - 70, 120)
-    elseif sRelp == 'NE' then g.line (center, 180, center + 70, 120)
-    elseif sRelp == 'SW' then g.line (center, 180, center - 70, 240)
-    elseif sRelp == 'SE' then g.line (center, 180, center + 70, 240) end
+    if sRelp == 'NW' then g.line (center, 230, center - 70, 170)
+    elseif sRelp == 'NE' then g.line (center, 230, center + 70, 170)
+    elseif sRelp == 'SW' then g.line (center, 230, center - 70, 310)
+    elseif sRelp == 'SE' then g.line (center, 230, center + 70, 310) end
     
     -- Health
     for i=1,p.health,1 do
@@ -124,8 +123,9 @@ function love.draw()
   
     -- Score
     g.setColor(255, 255, 255) -- white
+    g.setFont( g.newFont(20) )
     score = math.floor(((p.shape:getRadius()*math.pi)/2) * 1000)
-    g.print("Size: " .. score,g.getWidth() - 400, 150)
+    g.print("Size: " .. score,g.getWidth() - 600, 150)
 end
 
 function beginContact(a, b, coll)

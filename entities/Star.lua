@@ -3,7 +3,7 @@ Star = {}
 function Star:new(s)
   
   if not s then
-    s = math.random(100, 200)
+    s = math.random(200, 400)
   end
 
   local images = {}
@@ -41,8 +41,8 @@ function Star:update()
 end
 
 function Star:draw()
-    if self.body:getX() < camera.x + g.getWidth() + excessAtEdgeOfScreen and self.body:getX() > camera.x - excessAtEdgeOfScreen then
-      if self.body:getY() < camera.y + g.getHeight() + excessAtEdgeOfScreen and self.body:getY() > camera.y - excessAtEdgeOfScreen then
+    if self.body:getX() < camera.x + g.getWidth() + 1000 and self.body:getX() > camera.x - 1000 then
+      if self.body:getY() < camera.y + g.getHeight() + 1000 and self.body:getY() > camera.y - 1000 then
         g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
         scaleFactor = (self.shape:getRadius() * 2)/(self.image:getWidth())
         g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(), scaleFactor, scaleFactor, self.image:getWidth()/2, self.image:getHeight()/2)
