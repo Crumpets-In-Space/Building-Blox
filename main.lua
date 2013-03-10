@@ -111,10 +111,10 @@ function love.draw()
     --g.print("The Sun is " ..sRelp, g.getWidth() - 400, 400)
     g.draw(compass, g.getWidth() - 200, 100, 0, 0.25, 0.25)
     center = g.getWidth() - 120
-    if sRelp == 'NW' then g.line (center, 180, center - 80, 120)
-    elseif sRelp == 'NE' then g.line (center, 180, center + 80, 120)
-    elseif sRelp == 'SW' then g.line (center, 180, center - 80, 260)
-    elseif sRelp == 'SE' then g.line (center, 180, center + 80, 260) end
+    if sRelp == 'NW' then g.line (center, 180, center - 70, 120)
+    elseif sRelp == 'NE' then g.line (center, 180, center + 70, 120)
+    elseif sRelp == 'SW' then g.line (center, 180, center - 70, 240)
+    elseif sRelp == 'SE' then g.line (center, 180, center + 70, 240) end
     
     -- Health
     for i=1,p.health,1 do
