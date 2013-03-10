@@ -7,7 +7,7 @@ function Moon:new(planet, i)
   newX = newX + math.random(30,50) * i  
 
   local object = {
-    image = love.graphics.newImage("asteroid.png"),
+    image = love.graphics.newImage("imgs/asteroid.png"),
     x = newX,
     y = newY,
     value = math.random(5, 9)

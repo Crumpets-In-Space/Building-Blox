@@ -3,7 +3,7 @@ Asteroid = {}
 function Asteroid:new(size, x, y)
   local object = {}
   
-  object.image = love.graphics.newImage("asteroid.png")
+  object.image = love.graphics.newImage("imgs/asteroid.png")
   
   if size then object.size = size else object.size = math.random(5,10) end  
   if size then object.x = x else object.x = math.random(-5000,5000) end  

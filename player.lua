@@ -5,7 +5,7 @@ function Player:new()
   -- define our parameters here
   local object = {
     value = 10,
-    image = g.newImage("player.png"),
+    image = g.newImage("imgs/player.png"),
     x = g.getWidth()/2,
     y = g.getHeight()/2,
     width = 0,
