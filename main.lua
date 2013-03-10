@@ -96,19 +96,6 @@ function love.draw()
     g.print("Number of Asteroids: " .. #s.asteroids, 2, 20)
   end
   
-  -- Health
-  for i=1,p.health,1 do
-    -- Heart
-    love.graphics.setColor(255, 0, 0) -- red
-    g.arc( "fill", (g.getWidth() - (70 * p.health) - 200) + 62.5 + 70*i, 50, 12.5, math.pi, 2*math.pi)
-    g.arc( "fill",  (g.getWidth() - (70 * p.health) - 200) + 87.5 + 70*i, 50, 12.5, math.pi, 2*math.pi)
-    g.polygon('fill',  (g.getWidth() - (70 * p.health) - 200) + 50 + 70*i, 50,  (g.getWidth() - (70 * p.health) - 200) + 100 + 70*i, 50,  (g.getWidth() - (70 * p.health) - 200) + 75 + 70*i, 100)
-  end
-  
-  -- Score
-  g.setColor(255, 255, 255) -- white
-  g.print("Score: " .. p.value,g.getWidth() - 400, 150)
-  
   camera:set()
 
   -- Draw player
@@ -118,6 +105,20 @@ function love.draw()
   s:draw()
  
   camera:unset()
+  
+  -- HUD
+    -- Health
+    for i=1,p.health,1 do
+      -- Heart
+      love.graphics.setColor(255, 0, 0) -- red
+      g.arc( "fill", (g.getWidth() - (70 * p.health) - 200) + 62.5 + 70*i, 50, 12.5, math.pi, 2*math.pi)
+      g.arc( "fill",  (g.getWidth() - (70 * p.health) - 200) + 87.5 + 70*i, 50, 12.5, math.pi, 2*math.pi)
+      g.polygon('fill',  (g.getWidth() - (70 * p.health) - 200) + 50 + 70*i, 50,  (g.getWidth() - (70 * p.health) - 200) + 100 + 70*i, 50,  (g.getWidth() - (70 * p.health) - 200) + 75 + 70*i, 100)
+    end
+  
+    -- Score
+    g.setColor(255, 255, 255) -- white
+    g.print("Score: " .. p.value,g.getWidth() - 400, 150)
 end
 
 function beginContact(a, b, coll)

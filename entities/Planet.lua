@@ -2,7 +2,7 @@ Planet = {}
 
 function Planet:new(sun, i)
   local object = {
-    image = love.graphics.newImage("asteroid.png"),
+    image = love.graphics.newImage("imgs/asteroid.png"),
     x = sun.x + 1000 * i,
     y = sun.y,
     radius = math.random(20, 60)
