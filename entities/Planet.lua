@@ -58,7 +58,7 @@ function Planet:update(dt)
 end
 
 function Planet:draw()
-  g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
+  --g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
 
   scaleFactor = (self.shape:getRadius() * 2)/(self.image:getWidth())
   g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(), scaleFactor, scaleFactor, self.image:getWidth()/2, self.image:getHeight()/2)
