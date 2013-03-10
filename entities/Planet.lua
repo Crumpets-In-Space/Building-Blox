@@ -2,11 +2,17 @@ Planet = {}
 
 function Planet:new(sun, i)
   local images = {}
-  images[0] = "imgs/Planets/redPlanets.png"
-  images[1] = "imgs/Planets/red_dwalf.png"
+  images[0] = "imgs/Planets/blue2.png"
+  images[1] = "imgs/Planets/bluey.png"
+  images[2] = "imgs/Planets/earth.png"
+  images[3] = "imgs/Planets/mars.png"
+  images[4] = "imgs/Planets/red_dwalf.png"
+  images[5] = "imgs/Planets/redPlanets.png"
+  images[6] = "imgs/Planets/ringy.png"
+  images[7] = "imgs/Planets/venusaw.png"
   
   local object = {
-    image = love.graphics.newImage(images[math.random(0,1)]),
+    image = love.graphics.newImage(images[math.random(0,7)]),
     x = sun.x + 500 * i,
     y = sun.y,
     radius = math.random(20, 60)
@@ -15,8 +21,8 @@ function Planet:new(sun, i)
   -- Physics
   object.body = love.physics.newBody(world, object.x,object.y, "dynamic")
   object.shape = love.physics.newCircleShape(object.radius)
-  object.fixture = love.physics.newFixture(object.body, object.shape) -- connect body to shape
-  object.fixture:setUserData("Planet")
+  object.fixture = love.physics.newFixture(object.body, object.shape)
+  object.fixture:setUserData("Planet")-- connect body to shape
   object.body:setMass(10*object.radius)
   object.body:applyForce(0, 100000*i)
 
@@ -29,7 +35,6 @@ function Planet:new(sun, i)
   setmetatable(object, { __index = Planet })
   return object
 end
-
 
 function Planet:update(dt)
   actor = self.body
