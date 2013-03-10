@@ -2,8 +2,8 @@ Planet = {}
 
 function Planet:new(sun, i)
   local object = {
-    image = love.graphics.newImage("asteroid.png"),
-    x = sun.x + 1000 * i,
+    image = love.graphics.newImage("imgs/asteroid.png"),
+    x = sun.x + 500 * i,
     y = sun.y,
     radius = math.random(20, 60)
   }
@@ -13,7 +13,7 @@ function Planet:new(sun, i)
   object.shape = love.physics.newCircleShape(object.radius)
   object.fixture = love.physics.newFixture(object.body, object.shape):setUserData("Planet")-- connect body to shape
   object.body:setMass(10*object.radius)
-  object.body:applyLinearImpulse(0, -10000*i)
+  object.body:applyForce(0, 100000*i)
 
   require 'entities/Moon'
   object.moons = {}
@@ -26,15 +26,15 @@ function Planet:new(sun, i)
 end
 
 function Planet:update(dt)
-  planet = self.body
+  actor = self.body
   for i,v in ipairs(self.moons) do
-    moon = v.body
-    moonVec = vector(moon:getX(), moon:getY())
-    planetVec = vector(planet:getX(), planet:getY())
-    distance = planetVec - moonVec
-    force = 250 / distance:len2()
+    actress = v.body
+    actressVec = vector(actress:getX(), actress:getY())
+    actorVec = vector(actor:getX(), actor:getY())
+    distance = actorVec - actressVec
+    force = (0.5*actor:getMass()*actress:getMass()) / distance:len2()
     normforce = force*distance
-    moon:applyLinearImpulse(normforce.x, normforce.y, moon:getX(), moon:getY())
+    actress:applyLinearImpulse(normforce.x, normforce.y, actress:getX(), actress:getY())
   end
 end
 

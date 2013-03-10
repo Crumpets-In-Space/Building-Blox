@@ -63,15 +63,23 @@ function SolarSystem:update(dt)
     end
   end
 
-  star = self.sun.body
+  actor = self.sun.body
   for i,v in ipairs(self.planets) do
-    planet = v.body
-    moonVec = vector(planet:getX(), planet:getY())
-    planetVec = vector(star:getX(), star:getY())
-    distance = planetVec - moonVec
-    force = (250 * star:getMass()) / distance:len2()
+    actress = v.body
+    actressVec = vector(actress:getX(), actress:getY())
+    actorVec = vector(actor:getX(), actor:getY())
+    distance = actorVec - actressVec
+    force = (0.005*actor:getMass()*actress:getMass()) / distance:len2()
     normforce = force*distance
-    planet:applyLinearImpulse(normforce.x, normforce.y, planet:getX(), planet:getY())
+    actress:applyLinearImpulse(normforce.x, normforce.y, actress:getX(), actress:getY())
+    for j,w in ipairs(v.moons) do
+      actress = w.body
+      actressVec = vector(actress:getX(), actress:getY())
+      distance = actorVec - actressVec
+      force = (0.005*actor:getMass()*actress:getMass()) / distance:len2()
+      normforce = force*distance
+      actress:applyLinearImpulse(normforce.x, normforce.y, actress:getX(), actress:getY())
+    end
   end
 end
 
@@ -86,11 +94,7 @@ function SolarSystem:draw()
   end
 
   for i,v in ipairs(self.planets) do
-    if v.body:getX() < camera.x + g.getWidth() + excessAtEdgeOfScreen and v.body:getX() > camera.x - excessAtEdgeOfScreen then
-      if v.body:getY() < camera.y + g.getHeight() + excessAtEdgeOfScreen and v.body:getY() > camera.y - excessAtEdgeOfScreen then
         v:draw()
-      end
-    end
   end
   
   self.sun:draw()

@@ -35,7 +35,7 @@ end
 function love.update(dt)
   --update World
   world:update(dt)
-  
+ 
   -- update Player
   p:update(dt)
   
@@ -55,8 +55,6 @@ function love.update(dt)
     admin = true
   end
   
-  
-  
   -- determine sun position relative to player
   sx = s.sun.body:getX( )
   sy = s.sun.body:getY( )
@@ -72,7 +70,6 @@ function love.update(dt)
     if sx >= px then sRelp = "NE"
     else sRelp = "NW" end
   end
-  
 end
 
 function love.draw()
