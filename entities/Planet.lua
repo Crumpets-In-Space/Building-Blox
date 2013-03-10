@@ -47,6 +47,14 @@ function Planet:update(dt)
     normforce = force*distance
     actress:applyLinearImpulse(normforce.x, normforce.y, actress:getX(), actress:getY())
   end
+  
+  -- Remove destroyed planets
+  for x=#self.moons,1,-1 do
+    if self.moons[x].fixture:getUserData() == "DESTROYME" then
+      table.remove(self.moons, x)
+    end
+  end
+  
 end
 
 function Planet:draw()
