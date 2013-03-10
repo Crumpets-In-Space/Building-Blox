@@ -32,6 +32,6 @@ function Asteroid:isDestroyed()
 end
 
 function Asteroid:draw()
-  g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
+  --g.circle("line", self.body:getX(),self.body:getY(), self.shape:getRadius(), 20)
   g.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(), self.size/30, self.size/30, self.image:getWidth()/2, self.image:getHeight()/2)
 end
