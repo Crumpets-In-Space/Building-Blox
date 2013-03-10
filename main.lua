@@ -8,13 +8,12 @@ function love.load()
 
   -- graphics love
   g = love.graphics
-   text       = ""
    
   -- Game world
   love.physics.setMeter(30)
   world = love.physics.newWorld( 0, 0, true )
     --These callback function names can be almost any you want:
-    world:setCallbacks(beginContact, endContact)
+    world:setCallbacks(beginContact)
   gameover = false
   
   -- instantiate our player and set initial values
@@ -106,14 +105,11 @@ function love.draw()
   -- Draw entities
   s:draw()
  
-  g.print(text, 10, 10)
   camera:unset()
 end
 
 function beginContact(a, b, coll)
     x,y = coll:getNormal()
-    --text = text.."\n"..a:getUserData().." colliding with "..b:getUserData().." with a vector normal of: "..x..", "..y
-    
     -- Two of the same type colliding
     if a:getUserData() == b:getUserData() then
       -- Mark asteroid to be removed
@@ -126,7 +122,7 @@ function beginContact(a, b, coll)
         -- Play audio sound for collisions on the screen
         if a:getBody():getX() < camera.x + g.getWidth() and a:getBody():getX() > camera.x then
           if a:getBody():getY() < camera.y + g.getHeight() and a:getBody():getY() > camera.y then
-            --love.audio.play(explosion)
+            love.audio.play(explosion)
           end
         end
       end
@@ -141,9 +137,4 @@ function beginContact(a, b, coll)
         p.health = p.health - 1
       end
     end
-end
-
-
-function endContact(a, b, coll)
-    --text = text.."\n"..a:getUserData().." uncolliding with "..b:getUserData()
 end

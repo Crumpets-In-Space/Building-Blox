@@ -24,20 +24,21 @@ end
 
 -- Update function
 function Player:update(dt)  
-  if love.keyboard.isDown("right") then
+  x, y = self.body:getLinearVelocity( )
+  
+  if love.keyboard.isDown("right") and x < 500 then
     self.body:applyForce(500, 0)
-  elseif love.keyboard.isDown("left") then
+  elseif love.keyboard.isDown("left") and x > -500 then
     self.body:applyForce(-500, 0)
   end
   
-  if love.keyboard.isDown("down") then
+  if love.keyboard.isDown("down") and y < 500 then
     self.body:applyForce(0, 500)
-  elseif love.keyboard.isDown("up") then
+  elseif love.keyboard.isDown("up") and y > -500 then
     self.body:applyForce(0, -500)
   end
   
   -- Get current velocity
-  x, y = self.body:getLinearVelocity( )
   camera:move(x*dt,y*dt)
   
   -- Determine if player is dead
