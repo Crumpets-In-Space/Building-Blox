@@ -7,17 +7,17 @@ function Star:new(s)
   end
 
   local images = {}
-  images[0] = "ColoredStars/bluesun.png"
-  images[1] = "ColoredStars/dkbluesun.png"
-  images[2] = "ColoredStars/green1sun.png"
-  images[3] = "ColoredStars/green2sun.png"
-  images[4] = "ColoredStars/orangesun.png"
-  images[5] = "ColoredStars/pinksun.png"
-  images[6] = "ColoredStars/red1sun.png"
-  images[7] = "ColoredStars/sun.png"
-  images[8] = "ColoredStars/tealsun.png"
-  images[9] = "ColoredStars/whitesun.png"
-  images[10] = "ColoredStars/yellowsun.png"
+  images[0] = "imgs/ColoredStars/bluesun.png"
+  images[1] = "imgs/ColoredStars/dkbluesun.png"
+  images[2] = "imgs/ColoredStars/green1sun.png"
+  images[3] = "imgs/ColoredStars/green2sun.png"
+  images[4] = "imgs/ColoredStars/orangesun.png"
+  images[5] = "imgs/ColoredStars/pinksun.png"
+  images[6] = "imgs/ColoredStars/red1sun.png"
+  images[7] = "imgs/ColoredStars/sun.png"
+  images[8] = "imgs/ColoredStars/tealsun.png"
+  images[9] = "imgs/ColoredStars/whitesun.png"
+  images[10] = "imgs/ColoredStars/yellowsun.png"
 
   local object = {
     image = love.graphics.newImage(images[math.random(10)]),
