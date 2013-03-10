@@ -20,7 +20,7 @@ function Star:new(s)
   images[10] = "imgs/ColoredStars/yellowsun.png"
 
   local object = {
-    image = love.graphics.newImage(images[math.random(10)]),
+    image = love.graphics.newImage(images[math.random(0,10)]),
     x = math.random(-2000,2000),
     y = math.random(-2000,2000),
     size = s 
