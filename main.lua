@@ -143,7 +143,7 @@ function love.draw()
     g.setColor(255, 255, 255) -- white
     g.setFont( g.newFont(20) )
     score = math.floor(((p.shape:getRadius()*math.pi)/2) * 1000)
-    g.print("Size: " .. score,g.getWidth() - 600, 150)
+    g.print("Size: " .. score, 10, 10)
     
   --MAP
   if map then
