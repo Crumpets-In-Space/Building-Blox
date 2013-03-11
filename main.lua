@@ -56,8 +56,8 @@ function love.update(dt)
     admin = true
   end
   if love.keyboard.isDown("lshift") then
-    if map == true then map = false 
-      else map = true end
+   -- if map == true then map = false 
+    --  else map = true end
   end
 
   if love.keyboard.isDown("r") then
@@ -147,11 +147,13 @@ function love.draw()
     
   --MAP
   if map then
+    g.setColor(213, 213, 213)
+    g.rectangle ("fill", p.body:getX()/10, p.body:getY()/10, 10,10)
     g.setColor(155, 155, 155)
-    g.rectangle ("fill", 20, 20, 300,300)
-    
     for i,v in ipairs(s.planets) do
-      g.rectangle ("fill", 20, 20, 10,10)
+      x = (v.body:getX() - (p.body:getX()))/10
+      y = (v.body:getY() - (p.body:getY()))/10
+      g.rectangle ("fill", x, y, 10,10)
     end
   end  
 end
